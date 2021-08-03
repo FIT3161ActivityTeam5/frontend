@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import tailwind from 'tailwind-rn';
 
 export type ButtonProps = {
     /** The text to display on the button. */
@@ -24,24 +25,17 @@ export type ButtonProps = {
  */
 export default function Button(props: ButtonProps) {
     return (
-        <TouchableOpacity style={styles.container} activeOpacity={0.8}>
-            <Text style={styles.text}>{props.title}</Text>
+        <TouchableOpacity
+            style={tailwind(
+                'w-full py-3 px-6 bg-purple-600 items-center justify-center rounded-lg'
+            )}
+            activeOpacity={0.8}
+        >
+            <Text style={tailwind(
+                'text-white font-bold'
+            )}>
+                {props.title}
+            </Text>
         </TouchableOpacity>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        paddingHorizontal: 24,
-        paddingVertical: 12,
-        backgroundColor: '#8e44ad',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 12
-    },
-    text: {
-        color: '#fff',
-        fontWeight: '700'
-    }
-});
