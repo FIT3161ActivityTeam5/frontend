@@ -7,7 +7,7 @@ import Button from './components/button/button';
 export default function App() {
   return (
     <View style={tailwind('flex-1 bg-white items-center justify-center')}>
-      <Button title="Confirm" onPress={() => {}} />
+      <Button title="Confirm" onPress={() => {}} style="bg-indigo-500" />
       <StatusBar style="auto" />
     </View>
   );
