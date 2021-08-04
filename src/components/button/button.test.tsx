@@ -9,4 +9,24 @@ describe('<Button />', () => {
     const tree = renderer.create(<Button title="Confirm" onPress={() => {}} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it('applies custom styles correctly', () => {
+    const tree = renderer.create(
+      <Button
+        title="Confirm"
+        onPress={() => {}}
+        style="bg-red-600"
+      />
+    ).toJSON();
+  });
+
+  it('applies custom text styles correctly', () => {
+    const tree = renderer.create(
+      <Button
+        title="Confirm"
+        onPress={() => {}}
+        textStyle="font-thin"
+      />
+    ).toJSON();
+  });
 });
