@@ -18,6 +18,7 @@ describe('<Button />', () => {
         style="bg-red-600"
       />
     ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   it('applies custom text styles correctly', () => {
@@ -28,5 +29,6 @@ describe('<Button />', () => {
         textStyle="font-thin"
       />
     ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
