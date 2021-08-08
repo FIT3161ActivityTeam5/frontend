@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import tailwind from 'tailwind-rn';
 import clsx from 'clsx';
+import Text from '../text/text';
 
 export type ButtonProps = {
     /** The text to display on the button. */
