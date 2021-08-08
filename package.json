@@ -15,6 +15,7 @@
     ]
   },
   "dependencies": {
+    "clsx": "^1.1.1",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",

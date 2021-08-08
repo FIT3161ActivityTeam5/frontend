@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import tailwind from 'tailwind-rn';
+import clsx from 'clsx';
 
 export type ButtonProps = {
     /** The text to display on the button. */
@@ -8,6 +9,15 @@ export type ButtonProps = {
 
     /** The function to call when the user presses the button. */
     onPress: () => void;
+
+    /**
+     * Optional string of tailwind utilities to pass to the button.
+     * This can be used to override the default button styles.
+     */
+    style?: string;
+
+    /** Optional string of tailwind utilities to pass to the text. */
+    textStyle?: string;
 };
 
 /**
@@ -27,12 +37,18 @@ export default function Button(props: ButtonProps) {
     return (
         <TouchableOpacity
             style={tailwind(
-                'w-full py-3 px-6 bg-purple-600 items-center justify-center rounded-lg'
+                clsx(
+                    'w-full py-3 px-6 bg-purple-600 items-center justify-center rounded-lg',
+                    props.style
+                )
             )}
             activeOpacity={0.8}
         >
             <Text style={tailwind(
-                'text-white font-bold'
+                clsx(    
+                    'text-white font-bold',
+                    props.textStyle
+                )
             )}>
                 {props.title}
             </Text>
