@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View } from 'react-native';
+import { ActionSheetIOS, View } from 'react-native';
 import tailwind from 'tailwind-rn';
 import {
   useFonts,
@@ -24,6 +24,20 @@ import {
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 import Button from './components/button/button';
+import useAuthentication, { AuthenticationProvider } from './hooks/use-authentication';
+
+function AuthScreen() {
+  const auth = useAuthentication();
+  return (
+    <View style={tailwind('flex-1 bg-white items-center justify-center')}>
+      {auth.accessToken ? (
+        <Button title="Log Out" onPress={auth.logout} />
+      ) : (
+        <Button title="Log In" onPress={auth.login} disabled={auth.loading} />
+      )}
+    </View>
+  );
+}
 
 export default function App() {
   // Load the fonts.
@@ -54,9 +68,8 @@ export default function App() {
   }
 
   return (
-    <View style={tailwind('flex-1 bg-white items-center justify-center')}>
-      <Button title="Confirm" onPress={() => {}} style="bg-indigo-500" />
-      <StatusBar style="auto" />
-    </View>
+    <AuthenticationProvider>
+      <AuthScreen />
+    </AuthenticationProvider>
   );
 }
