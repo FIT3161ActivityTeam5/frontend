@@ -31,10 +31,14 @@ exports[`<Button /> applies custom styles correctly 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "rgba(255, 255, 255, 1)",
-        "fontWeight": "700",
-      }
+      Array [
+        Object {
+          "fontFamily": "Poppins_700Bold",
+        },
+        Object {
+          "color": "rgba(255, 255, 255, 1)",
+        },
+      ]
     }
   >
     Confirm
@@ -73,10 +77,14 @@ exports[`<Button /> applies custom text styles correctly 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "rgba(255, 255, 255, 1)",
-        "fontWeight": "100",
-      }
+      Array [
+        Object {
+          "fontFamily": "Poppins_100Thin",
+        },
+        Object {
+          "color": "rgba(255, 255, 255, 1)",
+        },
+      ]
     }
   >
     Confirm
@@ -115,10 +123,14 @@ exports[`<Button /> renders correctly 1`] = `
 >
   <Text
     style={
-      Object {
-        "color": "rgba(255, 255, 255, 1)",
-        "fontWeight": "700",
-      }
+      Array [
+        Object {
+          "fontFamily": "Poppins_700Bold",
+        },
+        Object {
+          "color": "rgba(255, 255, 255, 1)",
+        },
+      ]
     }
   >
     Confirm
