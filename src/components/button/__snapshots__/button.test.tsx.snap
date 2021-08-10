@@ -3,7 +3,7 @@
 exports[`<Button /> applies custom styles correctly 1`] = `
 <View
   accessible={true}
-  focusable={false}
+  focusable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -37,6 +37,8 @@ exports[`<Button /> applies custom styles correctly 1`] = `
         },
         Object {
           "color": "rgba(255, 255, 255, 1)",
+          "fontSize": 16,
+          "lineHeight": 24,
         },
       ]
     }
@@ -49,7 +51,7 @@ exports[`<Button /> applies custom styles correctly 1`] = `
 exports[`<Button /> applies custom text styles correctly 1`] = `
 <View
   accessible={true}
-  focusable={false}
+  focusable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -83,6 +85,8 @@ exports[`<Button /> applies custom text styles correctly 1`] = `
         },
         Object {
           "color": "rgba(255, 255, 255, 1)",
+          "fontSize": 16,
+          "lineHeight": 24,
         },
       ]
     }
@@ -95,7 +99,7 @@ exports[`<Button /> applies custom text styles correctly 1`] = `
 exports[`<Button /> renders correctly 1`] = `
 <View
   accessible={true}
-  focusable={false}
+  focusable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -129,6 +133,8 @@ exports[`<Button /> renders correctly 1`] = `
         },
         Object {
           "color": "rgba(255, 255, 255, 1)",
+          "fontSize": 16,
+          "lineHeight": 24,
         },
       ]
     }
