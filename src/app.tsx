@@ -33,10 +33,14 @@ const AuthenticationStack = createNativeStackNavigator();
  * user is signed in.
  */
 function AuthenticationController() {
-  const auth = false;
+  const auth = true;
 
   return (
-    <AuthenticationStack.Navigator>
+    <AuthenticationStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       {auth ? (
         <AuthenticationStack.Screen name="Authenticated" component={AuthenticatedScreen} />
       ) : (
