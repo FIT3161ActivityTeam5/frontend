@@ -3,16 +3,23 @@ import * as AuthSession from 'expo-auth-session';
 import * as SecureStore from 'expo-secure-store';
 import AuthenticationContext from '../contexts/authentication-context';
 
+// Basic configuration for Auth0.
 const AUTH0_CLIENT_ID = "W3HvRAyTSMN9U0AXjv3BsqThfDHMbpc1";
 const AUTH0_URI = "https://dev-vak81b59.us.auth0.com";
 const REDIRECT_URI = AuthSession.makeRedirectUri({useProxy: true});
 
+// Key used to look up the auth token in the users local store.
 const ACCESS_TOKEN_KEY = "thrive-access-token";
 
 export type AuthenticationProviderProps = {
     children?: React.ReactNode;
 };
 
+/**
+ * A provider which gives access to the AuthenticationContext.
+ * 
+ * TODO: Make this testable?
+ */
 export function AuthenticationProvider(props: AuthenticationProviderProps) {
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
     {
