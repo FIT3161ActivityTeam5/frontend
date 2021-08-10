@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Text from './Text';
+import Text from './text';
 
 describe('<Text />', () => {
   it('renders correctly', () => {
