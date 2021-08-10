@@ -1,7 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ActionSheetIOS, View } from 'react-native';
-import tailwind from 'tailwind-rn';
 import {
   useFonts,
   Poppins_100Thin,
@@ -23,19 +20,33 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
-import Button from './components/button/button';
-import useAuthentication, { AuthenticationProvider } from './hooks/use-authentication';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AuthenticatedScreen from './screens/authenticated-screen';
+import UnauthenticatedScreen from './screens/unauthenticated-screen';
 
-function AuthScreen() {
-  const auth = useAuthentication();
+const AuthenticationStack = createNativeStackNavigator();
+
+/**
+ * Simple component which selects the correct screen based on whether or not the
+ * user is signed in.
+ */
+function AuthenticationController() {
+  const auth = true;
+
   return (
-    <View style={tailwind('flex-1 bg-white items-center justify-center')}>
-      {auth.accessToken ? (
-        <Button title="Log Out" onPress={auth.logout} />
+    <AuthenticationStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      {auth ? (
+        <AuthenticationStack.Screen name="Authenticated" component={AuthenticatedScreen} />
       ) : (
-        <Button title="Log In" onPress={auth.login} disabled={auth.loading} />
+        <AuthenticationStack.Screen name="Unauthenticated" component={UnauthenticatedScreen} />
       )}
-    </View>
+    </AuthenticationStack.Navigator>
   );
 }
 
@@ -68,8 +79,10 @@ export default function App() {
   }
 
   return (
-    <AuthenticationProvider>
-      <AuthScreen />
-    </AuthenticationProvider>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <AuthenticationController />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
