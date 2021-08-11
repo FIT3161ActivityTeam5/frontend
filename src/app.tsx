@@ -33,7 +33,7 @@ const AuthenticationStack = createNativeStackNavigator();
  * user is signed in.
  */
 function AuthenticationController() {
-  const auth = true;
+  const auth = false;
 
   return (
     <AuthenticationStack.Navigator
