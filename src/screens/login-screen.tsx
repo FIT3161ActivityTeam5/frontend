@@ -1,19 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Text from '../components/text/text';
-import ToggleSwitch from '../components/ToggleSwitch/ToggleSwitch'
+//import ToggleSwitch from '../components/ToggleSwitch/ToggleSwitch'
 
 /**
  * The LoginScreen contains the login form.
  */
-export default function LoginScreen() {
-    return (
-        <>
-            <ToggleSwitch Name='newsletter' />
-            <ToggleSwitch Name='daily' />
-            <ToggleSwitch Name='weekly' />
-            <ToggleSwitch Name='monthly' />
-        </>
-    );
+ export default function LoginScreen() {
     return <Text>Login screen</Text>;
-    
 }
