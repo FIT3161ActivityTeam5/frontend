@@ -9,4 +9,13 @@ describe('<Text Input />', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  // it('applies custom styles correctly', () => {
+  //   const tree = renderer.create(
+  //   <UselessTextInput>
+  //     style ="bg-purple-300"
+  //   </UselessTextInput>
+  //   ).toJSON();
+  //   expect(tree).toMatchSnapshot();
+  // });
+
 });

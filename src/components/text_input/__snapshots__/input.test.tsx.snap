@@ -10,31 +10,26 @@ exports[`<Text Input /> renders correctly 1`] = `
     rejectResponderTermination={true}
     style={
       Object {
-        "borderWidth": 1,
-        "height": 40,
-        "margin": 12,
-        "padding": 10,
+        "alignItems": "center",
+        "backgroundColor": "rgba(196, 181, 253, 1)",
+        "borderBottomWidth": 4,
+        "borderLeftWidth": 4,
+        "borderRightWidth": 4,
+        "borderTopWidth": 4,
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginLeft": 16,
+        "marginRight": 16,
+        "marginTop": 16,
+        "paddingBottom": 6,
+        "paddingLeft": 12,
+        "paddingRight": 12,
+        "paddingTop": 6,
+        "width": "75%",
       }
     }
     underlineColorAndroid="transparent"
     value="Enter some text"
-  />
-  <TextInput
-    allowFontScaling={true}
-    keyboardType="numeric"
-    onChangeText={[Function]}
-    placeholder="Enter numeric values"
-    rejectResponderTermination={true}
-    style={
-      Object {
-        "borderWidth": 1,
-        "height": 40,
-        "margin": 12,
-        "padding": 10,
-      }
-    }
-    underlineColorAndroid="transparent"
-    value={null}
   />
 </RCTSafeAreaView>
 `;
