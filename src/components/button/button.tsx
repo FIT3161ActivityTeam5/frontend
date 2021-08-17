@@ -40,15 +40,15 @@ export default function Button(props: ButtonProps) {
             style={tailwind(
                 clsx(
                     'w-full py-3 px-6 bg-purple-600 items-center justify-center rounded-lg',
-                    props.style
+                    props.style,
                 )
             )}
             activeOpacity={0.8}
+            onPress={props.onPress}
         >
             <Text style={tailwind(
                 clsx(    
-                    'text-white font-bold',
-                    props.textStyle
+                    'text-white text-base font-bold',
                 )
             )}>
                 {props.title}
