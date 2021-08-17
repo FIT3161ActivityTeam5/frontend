@@ -14,11 +14,10 @@ const AuthenticationContext = React.createContext<
       accessToken: string | undefined;
 
       /**
-       * Whether or not Auth0 is still loading.
-       * If this is false, the user should not be given the option to log in
-       * (disable the login button).
+       * Whether or not we are still fetching the users token, app should display
+       * a loading screen for as long as this is true.
        */
-      loading: boolean;
+      isLoading: boolean;
 
       /* Opens up a prompt for the user to sign in with. */
       login: () => void;

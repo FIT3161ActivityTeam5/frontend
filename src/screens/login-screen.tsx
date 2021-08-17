@@ -16,7 +16,7 @@ export default function LoginScreen() {
       <Text style={tailwind('text-purple-800 font-semibold text-3xl')}>
         ACTIVITY
       </Text>
-      <Button title="Login" onPress={auth.login} disabled={auth.loading} />
+      <Button title="Login" onPress={auth.login} />
     </SafeAreaView>
   ); 
 }

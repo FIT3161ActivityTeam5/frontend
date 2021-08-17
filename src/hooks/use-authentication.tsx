@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import * as AuthSession from 'expo-auth-session';
 import * as SecureStore from 'expo-secure-store';
 import AuthenticationContext from '../contexts/authentication-context';
+import toQueryString from '../lib/to-query-string';
 
 // Basic configuration for Auth0.
 const AUTH0_CLIENT_ID = "W3HvRAyTSMN9U0AXjv3BsqThfDHMbpc1";
-const AUTH0_URI = "https://dev-vak81b59.us.auth0.com";
+const AUTH0_URI = "dev-vak81b59.us.auth0.com";
 const REDIRECT_URI = AuthSession.makeRedirectUri({useProxy: true});
 
 // Key used to look up the auth token in the users local store.
@@ -21,19 +22,6 @@ export type AuthenticationProviderProps = {
  * TODO: Make this testable?
  */
 export function AuthenticationProvider(props: AuthenticationProviderProps) {
-  const [request, result, promptAsync] = AuthSession.useAuthRequest(
-    {
-      redirectUri: REDIRECT_URI,
-      clientId: AUTH0_CLIENT_ID,
-      responseType: 'id_token',
-      scopes: ['openid', 'profile'],
-      extraParams: {
-        nonce: 'nonce',
-      },
-    },
-    AuthSession.useAutoDiscovery(AUTH0_URI),
-  );
-
   // This is the redirect URI which must be added to the list of accepted
   // callback URLs.
   if (REDIRECT_URI !== 'https://auth.expo.io/@fit3161/frontend') {
@@ -42,6 +30,7 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 
   // Store the users token for interfacing with the backend.
   const [accessToken, setAccessToken] = React.useState<string | undefined>(undefined);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   // When the user firsts opens the app, try and get the saved token.
   useEffect(() => {
@@ -50,71 +39,64 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
         if (token !== null) {
           setAccessToken(token);
         }
+      }).finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
   // The login function will simply begin the Auth0 flow. Once this is finished,
   // the 'result' variable will be updated with the result of the login. 
   const login = () => {
-    promptAsync({useProxy: true}).catch(e => {
-      console.log(`Auth0 promptAsync Error: ${e}`);
+    const params = toQueryString({
+      client_id: AUTH0_CLIENT_ID,
+      redirect_uri: REDIRECT_URI,
+      response_type: "id_token",
+      nonce: "nonce",
+      rememberLastLogin: "false",
+    });
+
+    AuthSession.startAsync({
+      authUrl: `https://${AUTH0_URI}/authorize${params}`,
+    }).then(response => {
+      if (response.type === 'success') {
+        const token = response.params['id_token'];
+        SecureStore.setItemAsync(ACCESS_TOKEN_KEY, token)
+          .then(() => {
+            setAccessToken(token);
+          });
+      }
     });
   };
   
   // The logout function will clear the users access token, which will drop them
   // back to the login screen.
   const logout = () => {
-    // TODO: Do we need to hit the /logout endpoint to log the user out on the
-    //       Auth0 end? https://auth0.com/docs/api/authentication#logout
-    
-    // The following code works to log the user out, but does not properly redirect
-    // back to our application.
-    // https://github.com/auth0/react-native-auth0/blob/91c08f93d37e0dd2f2c41415ebb65f4cf720f1a4/src/webauth/index.js#L155
-    //
-    // await WebBrowser.openAuthSessionAsync(
-    //  `https://dev-vak81b59.us.auth0.com/v2/logout?client_id=${encodeURIComponent(AUTH0_CLIENT_ID)}&returnTo=${encodeURIComponent(REDIRECT_URI)}`,
-    //  REDIRECT_URI,
-    // );
+    const params = toQueryString({
+      client_id: AUTH0_CLIENT_ID,
+      redirect_uri: REDIRECT_URI,
+    });
 
-    // Delete the stored key, and update the state.
-    SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY).then(() => {
-      setAccessToken(undefined);
+    // TODO: Maybe we can just send a fetch request in the background to hit the
+    //       /logout endpoint, to prevent the ugly browser window showing up.
+    AuthSession.startAsync({
+      authUrl: `https://${AUTH0_URI}/logout${params}`,
+    }).then(_ => {
+      // Delete the stored key, and update the state.
+      SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY).then(() => {
+        setAccessToken(undefined);
+      });
     });
   };
-  
-  // When the 'result' from useAuthRequest changes, we will run this code to
-  // determine if we are successfully logged in.
-  // TODO: This code is a little stinky, should be cleaned up.
-  //       If the app ever logs you back in when you were previously logged out,
-  //       this code is the culprit.
-  React.useEffect(() => {
-    if (result) {
-      // TODO: Report error back to the caller.
-      if (result.type === 'error') {
-        console.log(`Auth0 Error: ${result.error}`);
-        return;
-      }
-
-      // If we successfully logged in, set the access token.
-      if (result.type === 'success') {
-        const token = result.params['id_token'];
-        SecureStore.setItemAsync(ACCESS_TOKEN_KEY, token)
-          .then(() => {
-            setAccessToken(token);
-          });
-      }
-    }
-  }, [result]);
 
   // Memoize the authentication state, to only re-render when isLoggedIn changes.
   const memo = React.useMemo(
     () => ({
       accessToken,
-      loading: request === null,
+      isLoading,
       login,
       logout,
     }),
-    [accessToken, request]
+    [accessToken, isLoading],
   );
 
   return (

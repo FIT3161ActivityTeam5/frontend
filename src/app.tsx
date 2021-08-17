@@ -36,6 +36,11 @@ const AuthenticationStack = createNativeStackNavigator();
 function AuthenticationController() {
   const auth = useAuthentication();
 
+  // TODO: Display a loading screen.
+  if (auth.isLoading) {
+    return null;
+  }
+
   return (
     <AuthenticationStack.Navigator
       screenOptions={{
