@@ -30,9 +30,9 @@ export default function Navbar(props: BottomTabBarProps) {
 
   return (
     <View style={[
-      tailwind('flex-row bg-white rounded-t-2xl'),
-      SmallShadow,
-    ]}
+        tailwind('flex-row bg-white rounded-t-2xl'),
+        SmallShadow,
+      ]}
     >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
