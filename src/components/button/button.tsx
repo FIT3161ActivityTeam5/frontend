@@ -19,9 +19,6 @@ export type ButtonProps = {
 
     /** Optional string of tailwind utilities to pass to the text. */
     textStyle?: string;
-
-    /** Whether or not the button is disabled. */
-    disabled?: boolean;
 };
 
 /**
@@ -44,22 +41,14 @@ export default function Button(props: ButtonProps) {
                 clsx(
                     'w-full py-3 px-6 bg-purple-600 items-center justify-center rounded-lg',
                     props.style,
-                    {
-                        'bg-purple-300': props.disabled,
-                    },
                 )
             )}
             activeOpacity={0.8}
             onPress={props.onPress}
-            disabled={props.disabled}
         >
             <Text style={tailwind(
                 clsx(    
                     'text-white text-base font-bold',
-                    props.textStyle,
-                    {
-                        'text-purple-400': props.disabled,
-                    }
                 )
             )}>
                 {props.title}
