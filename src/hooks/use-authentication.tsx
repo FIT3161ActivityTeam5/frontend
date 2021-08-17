@@ -84,6 +84,9 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
   
   // When the 'result' from useAuthRequest changes, we will run this code to
   // determine if we are successfully logged in.
+  // TODO: This code is a little stinky, should be cleaned up.
+  //       If the app ever logs you back in when you were previously logged out,
+  //       this code is the culprit.
   React.useEffect(() => {
     if (result) {
       // TODO: Report error back to the caller.
