@@ -3,6 +3,7 @@ import Text from '../components/text/text';
 import Button from '../components/button/button';
 import tailwind from 'tailwind-rn';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Toggle_Switch from '../components/toggleswitch/toggleswitch';
 
 /**
  * The LoginScreen contains the login form.
