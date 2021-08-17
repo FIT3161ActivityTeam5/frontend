@@ -7,7 +7,11 @@ import Navbar from '../components/navbar/navbar';
 
 const TabBar = createBottomTabNavigator();
 
-const makeIcon = (route: string) => (props: {focused: boolean; color: string; size: number;}) => {
+/**
+ * Given a route name, as well as some other properties from react-native-navigation,
+ * returns the icon which should be rendered for the specific route.
+ */
+const getIconForRoute = (route: string) => (props: {focused: boolean; color: string; size: number;}) => {
   const iconProps = {
     color: props.color,
     width: props.size,
@@ -35,7 +39,7 @@ export default function AuthenticatedScreen() {
     <TabBar.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
-        tabBarIcon: makeIcon(route.name),
+        tabBarIcon: getIconForRoute(route.name),
       })}
       tabBar={props => <Navbar {...props} />}
     >
