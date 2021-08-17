@@ -81,7 +81,7 @@ exports[`<Button /> applies custom text styles correctly 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": "Poppins_100Thin",
+          "fontFamily": "Poppins_700Bold",
         },
         Object {
           "color": "rgba(255, 255, 255, 1)",
