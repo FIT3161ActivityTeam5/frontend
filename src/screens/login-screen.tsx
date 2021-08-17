@@ -4,9 +4,6 @@ import Button from '../components/button/button';
 import tailwind from 'tailwind-rn';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-
-
 /**
  * The LoginScreen contains the login form.
  */
@@ -24,5 +21,6 @@ export default function LoginScreen() {
     
     )
     ;
+
     
 }
