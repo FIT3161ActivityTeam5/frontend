@@ -13,13 +13,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function LoginScreen() {
     return( 
         
-        <SafeAreaView style={tailwind('flex-1 bg-white items-center justify-center')}>
-            <Text style={tailwind('text-purple-800 font-semibold ')}>
-                        ACTIVITY
+        <SafeAreaView style={tailwind('flex-1 bg-white items-center justify-between p-8')}>
+
+            <Text style={tailwind('text-purple-800 font-semibold text-3xl')}>
+                ACTIVITY
             </Text>
             <Button title="Login" onPress={() => {}} />
+
         </SafeAreaView>
-    
     
     )
     ;
