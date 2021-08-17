@@ -25,6 +25,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthenticatedScreen from './screens/authenticated-screen';
 import UnauthenticatedScreen from './screens/unauthenticated-screen';
+import useAuthentication, { AuthenticationProvider } from './hooks/use-authentication';
 
 const AuthenticationStack = createNativeStackNavigator();
 
@@ -33,7 +34,12 @@ const AuthenticationStack = createNativeStackNavigator();
  * user is signed in.
  */
 function AuthenticationController() {
-  const auth = true;
+  const auth = useAuthentication();
+
+  // TODO: Display a loading screen.
+  if (auth.isLoading) {
+    return null;
+  }
 
   return (
     <AuthenticationStack.Navigator
@@ -41,7 +47,7 @@ function AuthenticationController() {
         headerShown: false,
       }}
     >
-      {auth ? (
+      {auth.accessToken ? (
         <AuthenticationStack.Screen name="Authenticated" component={AuthenticatedScreen} />
       ) : (
         <AuthenticationStack.Screen name="Unauthenticated" component={UnauthenticatedScreen} />
@@ -80,9 +86,11 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <AuthenticationController />
-      </NavigationContainer>
+      <AuthenticationProvider>
+        <NavigationContainer>
+          <AuthenticationController />
+        </NavigationContainer>
+      </AuthenticationProvider>
     </SafeAreaProvider>
   );
 }

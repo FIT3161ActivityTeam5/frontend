@@ -3,7 +3,7 @@
 exports[`<Button /> applies custom styles correctly 1`] = `
 <View
   accessible={true}
-  focusable={false}
+  focusable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -37,6 +37,8 @@ exports[`<Button /> applies custom styles correctly 1`] = `
         },
         Object {
           "color": "rgba(255, 255, 255, 1)",
+          "fontSize": 16,
+          "lineHeight": 24,
         },
       ]
     }
@@ -49,53 +51,7 @@ exports[`<Button /> applies custom styles correctly 1`] = `
 exports[`<Button /> applies custom text styles correctly 1`] = `
 <View
   accessible={true}
-  focusable={false}
-  onClick={[Function]}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "rgba(124, 58, 237, 1)",
-      "borderBottomLeftRadius": 8,
-      "borderBottomRightRadius": 8,
-      "borderTopLeftRadius": 8,
-      "borderTopRightRadius": 8,
-      "justifyContent": "center",
-      "opacity": 1,
-      "paddingBottom": 12,
-      "paddingLeft": 24,
-      "paddingRight": 24,
-      "paddingTop": 12,
-      "width": "100%",
-    }
-  }
->
-  <Text
-    style={
-      Array [
-        Object {
-          "fontFamily": "Poppins_100Thin",
-        },
-        Object {
-          "color": "rgba(255, 255, 255, 1)",
-        },
-      ]
-    }
-  >
-    Confirm
-  </Text>
-</View>
-`;
-
-exports[`<Button /> renders correctly 1`] = `
-<View
-  accessible={true}
-  focusable={false}
+  focusable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -129,6 +85,56 @@ exports[`<Button /> renders correctly 1`] = `
         },
         Object {
           "color": "rgba(255, 255, 255, 1)",
+          "fontSize": 16,
+          "lineHeight": 24,
+        },
+      ]
+    }
+  >
+    Confirm
+  </Text>
+</View>
+`;
+
+exports[`<Button /> renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgba(124, 58, 237, 1)",
+      "borderBottomLeftRadius": 8,
+      "borderBottomRightRadius": 8,
+      "borderTopLeftRadius": 8,
+      "borderTopRightRadius": 8,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingBottom": 12,
+      "paddingLeft": 24,
+      "paddingRight": 24,
+      "paddingTop": 12,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "Poppins_700Bold",
+        },
+        Object {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontSize": 16,
+          "lineHeight": 24,
         },
       ]
     }
