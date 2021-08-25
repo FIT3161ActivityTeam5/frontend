@@ -2,40 +2,36 @@ import React from "react";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import tailwind from 'tailwind-rn';
 import clsx from 'clsx';
+import { useColorScheme } from 'react-native';
 
 export type UselessTextInput = {
   /** The text to display in the input field. */
   title: string;
-
   /**
    * Optional string of tailwind utilities to pass to the input field.
    * This can be used to override the default styles.
    */
   style?: string;
-
   /** Optional string of tailwind utilities to pass to the text. */
   textStyle?: string;
 };
 
 const UselessTextInput = () => {
-  const [text, onChangeText] = React.useState("Enter some text");
-  // const [number, onChangeNumber] = React.useState(null);
-
+  const [focus, setFocus] = React.useState(false);
+  const isDarkMode = useColorScheme() === "dark";
   return (
     <SafeAreaView>
       <TextInput
-        style={tailwind(
-          clsx(
-              'w-9/12 py-1.5 px-3 bg-purple-300 items-center justify-start border-4 m-4',
-          )
-      )}
-        onChangeText={onChangeText}
-        value={text}
-        // to change keyboardType="numeric"
+          placeholderTextColor={'white'}
+          placeholder="Enter some text here"  
+          style={tailwind(clsx('w-9/12 py-1.5 px-3 items-center justify-start border-2 m-4',
+            (focus ? "bg-purple-300 text-gray-900" : "bg-blue-400 text-gray-700")))}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
       />
-      
     </SafeAreaView>
   );
+
 };
 
 
