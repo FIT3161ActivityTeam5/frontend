@@ -81,6 +81,7 @@ const NODES: {x: number, y: number, value: number}[] = [
 
 export default function MapViewScreen() {
   const [nodes, setNodes] = React.useState(NODES);
+  const insets = useSafeAreaInsets();
 
   const handleDrag = (idx: number) => (pos: Vec2) => {
     const newNodes = [...nodes];
@@ -92,15 +93,15 @@ export default function MapViewScreen() {
     setNodes(newNodes);
   }
 
-  const margin = useSafeAreaInsets();
 
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
-      <View style={[tailwind("absolute p-4"), {
-        marginTop: margin.top
-      }]}
-      focusable={false}
-      >
+      <View style={[
+          tailwind("absolute p-4"),
+          {
+            marginTop: insets.top
+          }
+        ]}>
         <Text style={tailwind("text-4xl text-gray-400")}>
           {getQuadrant({x: nodes[0].x, y: nodes[0].y}, CANVAS_SIZE)}
         </Text>
