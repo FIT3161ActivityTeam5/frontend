@@ -1,68 +1,52 @@
 import React from 'react';
-import { Animated, PanResponder } from 'react-native';
 import { Circle, Text as SvgText, G } from 'react-native-svg';
-import { SvgPanZoomElement } from 'react-native-svg-pan-zoom';
 import { getColor } from 'tailwind-rn';
-
-const AnimatedGroup = Animated.createAnimatedComponent(G);
+import { Vec2 } from '../../lib/math';
+import ResponderElement from './repsonder-element';
 
 export type MapNodeProps = {
   x: number;
   y: number;
   value: number;
-};
 
-type Vec2 = {
-  x: number;
-  y: number;
+  onDrag: (pos: Vec2) => void; 
 };
 
 export default function MapNode(props: MapNodeProps) {
-  const [position, setPosition] = React.useState<Vec2>({x: props.x, y: props.y})
-
   function onDrag(x: number, y: number) {
-    setPosition({x, y});
+    props.onDrag({x, y});
   }
-
-  const pan = React.useRef(new Animated.ValueXY()).current;
-
-  const panResponder = React.useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderGrant: () => {
-        console.log("!!!!!!!!");
-        pan.setOffset({
-          x: (pan.x as any)._value,
-          y: (pan.y as any)._value
-        });
-      },
-      onPanResponderMove: Animated.event(
-        [
-          null,
-          { dx: pan.x, dy: pan.y }
-        ]
-      ),
-      onPanResponderRelease: () => {
-        pan.flattenOffset();
-      }
-    })
-  ).current;
 
   // TODO: This is highly laggy, should look at some other dragging library.
   //       Probably use this https://reactnative.dev/docs/panresponder
   return (
-    <AnimatedGroup
-      x={pan.x}
-      y={pan.x}
-      {...panResponder.panHandlers}
+    <ResponderElement
+      onDrag={(x, y) => onDrag(x, y)}
+      onClickRelease={e => console.log("!!!")}
+      onClick={e => console.log("click")}
+      x={props.x}
+      y={props.y}
     >
       <Circle
         cx={0}
         cy={0}
-        r={14}
+        r={15}
         fill={getColor('purple-500')}
         fillOpacity={0.5}
       />
-    </AnimatedGroup>
+      <Circle
+        cx={0}
+        cy={0}
+        r={12}
+        fill={getColor('purple-500')}
+      />
+      <SvgText
+        x={0}
+        y={4}
+        fill="white"
+        textAnchor="middle"
+      >12
+      </SvgText>
+    </ResponderElement>
   );
 }

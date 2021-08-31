@@ -1,21 +1,24 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import SvgPanZoom, { SvgPanZoomElement } from 'react-native-svg-pan-zoom';
-import { Circle, Line } from 'react-native-svg';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import SvgPanZoom from 'react-native-svg-pan-zoom';
 import tailwind from 'tailwind-rn';
 import MapAxis from '../components/map/map-axis';
 import MapNode from '../components/map/map-node';
 import MapEdge from '../components/map/map-edge';
+import { Vec2 } from '../lib/math';
+import { getNodeWeight, getQuadrant } from '../lib/map-utilities';
+import Text from '../components/text/text';
+import { View } from 'react-native';
 
 const CANVAS_SIZE = 1024;
 
-const NODES = [
-  { x: 304, y: 655, value: 29 },
+const NODES: {x: number, y: number, value: number}[] = [
+  // { x: 304, y: 655, value: 29 },
   // { x: 622, y: 677, value: 43 },
   // { x: 395, y: 597, value: 22 },
   // { x: 585, y: 588, value: 49 },
   // { x: 617, y: 711, value: 28 },
-  // { x: 493, y: 314, value: 31 },
+  { x: 493, y: 314, value: 31 },
   // { x: 520, y: 281, value: 15 },
   // { x: 445, y: 418, value: 16 },
   // { x: 375, y: 697, value: 26 },
@@ -30,7 +33,7 @@ const NODES = [
   // { x: 492, y: 642, value: 30 },
   // { x: 298, y: 522, value: 5 },
   // { x: 704, y: 755, value: 74 },
-  // { x: 695, y: 666, value: 89 },
+  { x: 695, y: 666, value: 89 },
   // { x: 718, y: 401, value: 32 },
   // { x: 765, y: 608, value: 25 },
   // { x: 457, y: 428, value: 66 },
@@ -77,9 +80,34 @@ const NODES = [
 ];
 
 export default function MapViewScreen() {
-  console.log("!");
+  const [nodes, setNodes] = React.useState(NODES);
+
+  const handleDrag = (idx: number) => (pos: Vec2) => {
+    const newNodes = [...nodes];
+    newNodes[idx] = {
+      ...newNodes[idx],
+      x: pos.x,
+      y: pos.y,
+    };
+    setNodes(newNodes);
+  }
+
+  const margin = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
+      <View style={[tailwind("absolute p-4"), {
+        marginTop: margin.top
+      }]}
+      focusable={false}
+      >
+        <Text style={tailwind("text-4xl text-gray-400")}>
+          {getQuadrant({x: nodes[0].x, y: nodes[0].y}, CANVAS_SIZE)}
+        </Text>
+        <Text style={tailwind("text-4xl text-gray-400")}>
+          {getNodeWeight({x: nodes[0].x, y: nodes[0].y}, CANVAS_SIZE)}
+        </Text>
+      </View>
       <SvgPanZoom
         canvasWidth={CANVAS_SIZE}
         canvasHeight={CANVAS_SIZE}
@@ -89,10 +117,10 @@ export default function MapViewScreen() {
       >
         <MapAxis canvasSize={CANVAS_SIZE} />
 
-        {/* <MapEdge x1={427} y1={277} x2={660} y2={424} /> */}
+        <MapEdge x1={nodes[0].x} y1={nodes[0].y} x2={nodes[1].x} y2={nodes[1].y} />
 
-        {NODES.map((n, i) => (
-          <MapNode key={i} {...n} />
+        {nodes.map((n, i) => (
+          <MapNode key={i} x={n.x} y={n.y} value={n.value} onDrag={handleDrag(i)} />
         ))}
       </SvgPanZoom>
     </SafeAreaView>
