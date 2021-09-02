@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> applies custom styles correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <RCTSwitch
+    accessibilityRole="switch"
+    onChange={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTintColor="rgba(124, 58, 237, 1)"
+    style={
+      Array [
+        Object {
+          "height": 31,
+          "width": 51,
+        },
+        Object {
+          "backgroundColor": "#3e3e3e",
+          "borderRadius": 16,
+        },
+      ]
+    }
+    thumbTintColor="rgba(245, 243, 255, 1)"
+    tintColor="rgba(124, 58, 237, 1)"
+    value={false}
+  />
+</View>
+`;
+
+exports[`<Button /> applies custom text styles correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <RCTSwitch
+    accessibilityRole="switch"
+    onChange={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTintColor="rgba(124, 58, 237, 1)"
+    style={
+      Array [
+        Object {
+          "height": 31,
+          "width": 51,
+        },
+        Object {
+          "backgroundColor": "#3e3e3e",
+          "borderRadius": 16,
+        },
+      ]
+    }
+    thumbTintColor="rgba(245, 243, 255, 1)"
+    tintColor="rgba(124, 58, 237, 1)"
+    value={false}
+  />
+</View>
+`;
+
+exports[`<Button /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <RCTSwitch
+    accessibilityRole="switch"
+    onChange={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTintColor="rgba(124, 58, 237, 1)"
+    style={
+      Array [
+        Object {
+          "height": 31,
+          "width": 51,
+        },
+        Object {
+          "backgroundColor": "#3e3e3e",
+          "borderRadius": 16,
+        },
+      ]
+    }
+    thumbTintColor="rgba(245, 243, 255, 1)"
+    tintColor="rgba(124, 58, 237, 1)"
+    value={false}
+  />
+</View>
+`;
