@@ -93,7 +93,6 @@ export default function MapViewScreen() {
     setNodes(newNodes);
   }
 
-
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
       <View style={[
@@ -121,7 +120,7 @@ export default function MapViewScreen() {
         <MapEdge x1={nodes[0].x} y1={nodes[0].y} x2={nodes[1].x} y2={nodes[1].y} />
 
         {nodes.map((n, i) => (
-          <MapNode key={i} x={n.x} y={n.y} value={n.value} onDrag={handleDrag(i)} />
+          <MapNode key={i} onDrag={handleDrag(i)} {...n} />
         ))}
       </SvgPanZoom>
     </SafeAreaView>
