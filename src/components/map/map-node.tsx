@@ -1,5 +1,5 @@
 import React from 'react';
-import { Circle, Text as SvgText, G } from 'react-native-svg';
+import { Circle, Text as SvgText } from 'react-native-svg';
 import { getColor } from 'tailwind-rn';
 import { distance, Vec2 } from '../../lib/math';
 import ResponderElement from './repsonder-element';
@@ -20,10 +20,6 @@ export default function MapNode(props: MapNodeProps) {
     props.onDrag({x, y});
   }
 
-  function onPress() {
-    console.log("Pressed node!")
-  }
-
   // TODO: This is highly laggy, should look at some other dragging library.
   //       Probably use this https://reactnative.dev/docs/panresponder
   return (
@@ -39,7 +35,7 @@ export default function MapNode(props: MapNodeProps) {
         // If we released our finger without moving the node very far, count it
         // as a press.
         if (dist < 0.5) {
-          onPress();
+          props.onPress();
         }
       }}
       onClick={e => {
