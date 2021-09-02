@@ -10,8 +10,8 @@ export default function MapListScreen() {
 
   return (
     <SafeAreaView>
-
-      <Text>{auth.accessToken}</Text>
+      {/* <Text>{auth.accessToken}</Text> */}
+      {/* <UselessTextInput></UselessTextInput> */}
       <Button title="Log Out" onPress={auth.logout} />
     </SafeAreaView>
   );
