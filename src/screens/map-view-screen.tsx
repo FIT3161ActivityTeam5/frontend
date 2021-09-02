@@ -93,6 +93,10 @@ export default function MapViewScreen() {
     setNodes(newNodes);
   }
 
+  const handlePress = (idx: number) => () => {
+    console.log("Pressed node " + idx);
+  };
+
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
       <View style={[
@@ -120,7 +124,7 @@ export default function MapViewScreen() {
         <MapEdge x1={nodes[0].x} y1={nodes[0].y} x2={nodes[1].x} y2={nodes[1].y} />
 
         {nodes.map((n, i) => (
-          <MapNode key={i} onDrag={handleDrag(i)} {...n} />
+          <MapNode key={i} onDrag={handleDrag(i)} onPress={handlePress(i)} {...n} />
         ))}
       </SvgPanZoom>
     </SafeAreaView>

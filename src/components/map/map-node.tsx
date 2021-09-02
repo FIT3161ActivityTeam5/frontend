@@ -10,6 +10,7 @@ export type MapNodeProps = {
   value: number;
 
   onDrag: (pos: Vec2) => void; 
+  onPress: () => void;
 };
 
 export default function MapNode(props: MapNodeProps) {
