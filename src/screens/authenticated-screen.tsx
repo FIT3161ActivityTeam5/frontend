@@ -4,7 +4,6 @@ import MapListScreen from './map-list-screen';
 import SettingsScreen from './settings-screen';
 import { IconGridMasonry, IconSettings, IconWarningTriangle } from 'iconic-icons-rn';
 import Navbar from '../components/navbar/navbar';
-import MapViewScreen from './map-view-screen';
 
 const TabBar = createBottomTabNavigator();
 
@@ -44,7 +43,7 @@ export default function AuthenticatedScreen() {
       })}
       tabBar={props => <Navbar {...props} />}
     >
-      <TabBar.Screen name="Map List" component={MapViewScreen} />
+      <TabBar.Screen name="Map List" component={MapListScreen} />
       <TabBar.Screen name="Settings" component={SettingsScreen} />
     </TabBar.Navigator>
   );
