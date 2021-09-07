@@ -5,14 +5,25 @@ import { distance, Vec2 } from '../../lib/math';
 import ResponderElement from './repsonder-element';
 
 export type MapNodeProps = {
+  /** The x position of this node on the map view. */
   x: number;
+  
+  /** The y position of this node on the map view. */
   y: number;
+  
+  /** The importance value of this node to display. */
   value: number;
 
+  /** Callback to call when this node is dragged. */
   onDrag: (pos: Vec2) => void; 
+
+  /** Callback to call when this node is pressed. */
   onPress: () => void;
 };
 
+/**
+ * Represents a single node in the map view. Can be dragged and clicked on.
+ */
 export default function MapNode(props: MapNodeProps) {
   const startPosition = React.useRef<Vec2>({x: 0, y: 0}).current;
 
@@ -63,7 +74,8 @@ export default function MapNode(props: MapNodeProps) {
         y={4}
         fill="white"
         textAnchor="middle"
-      >12
+      >
+        {props.value}
       </SvgText>
     </ResponderElement>
   );

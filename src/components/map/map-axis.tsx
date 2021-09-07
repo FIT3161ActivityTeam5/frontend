@@ -7,6 +7,9 @@ export type MapAxisProps = {
   canvasSize: number;
 };
 
+/**
+ * Represents the circular rings and horizontal/vertical axis on the map view.
+ */
 export default function MapAxis(props: MapAxisProps) {
   return (
     <>
