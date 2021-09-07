@@ -11,7 +11,7 @@ import useAuthentication from '../hooks/use-authentication';
 export default function LoginScreen() {
     const auth = useAuthentication();
     return( 
-        <SafeAreaView style={tailwind('flex-1 bg-blue-300 items-center justify-around p-8')}>
+        <SafeAreaView style={tailwind('flex-1 bg-grey-300 items-center justify-around p-8')}>
            
             <Text style={tailwind('text-purple-800 font-semibold text-3xl  text-center ')}>
                 Welcome to ACTIVITY
@@ -20,6 +20,8 @@ export default function LoginScreen() {
             <Text style={tailwind('text-purple-800 font-semibold text-3xl  text-center')}>
                 An Acceptance and Commitment Therapy Informed Visual Intervention Tool for You
             </Text>
+
+
 
             <Button title="Continue"  onPress={auth.login} />
             
