@@ -4,6 +4,7 @@ import Button from '../components/button/button';
 import useAuthentication from '../hooks/use-authentication';
 import { ListItem, Image } from 'react-native-elements';
 import tailwind from 'tailwind-rn';
+import clsx from 'clsx';
 
 export default function MapListScreen() {
     const auth = useAuthentication();
@@ -31,7 +32,7 @@ export default function MapListScreen() {
                   <ListItem key={i} bottomDivider>
                       <Image source={ l.image } style={{width: 180, height:180}}></Image>
                       <ListItem.Content>
-                          <ListItem.Title>{l.name}</ListItem.Title>
+                          <Button title={l.name} onPress={() => console.log("Add")} style={clsx('text-white')}></Button>
                       </ListItem.Content>
                   </ListItem>
               ))
