@@ -13,15 +13,15 @@ export default function MapListScreen() {
     const mapList = [
         {
             name: 'Map Number 1',
-            image: require('../assets/adaptive-icon.png')
+            image: require('../../assets/adaptive-icon.png')
         },
         {
             name: 'Map Number 2',
-            image: require('../assets/adaptive-icon.png')
+            image: require('../../assets/adaptive-icon.png')
         },
         {
             name: 'Map Number 3',
-            image: require('../assets/adaptive-icon.png')
+            image: require('../../assets/adaptive-icon.png')
         }
     ]
 
