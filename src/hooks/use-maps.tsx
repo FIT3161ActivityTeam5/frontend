@@ -8,7 +8,7 @@ export type UseMapsState = 'loading' | 'error' | 'success';
 
 /**
  * Hook which performs a GET request to retreive a list of the users maps.
- * Returns a tuple containing the current state of the request, and the map data.
+ * Returns an object containing the current state of the request, and the map data.
  * 
  * The state can be one of three values:
  *   - `loading`: The request is still under way, and a loading indicator should be shown.
@@ -16,10 +16,13 @@ export type UseMapsState = 'loading' | 'error' | 'success';
  *   - `success`: The request completed successfully, and the `maps` object will
  *                contain the users map data.
  * 
+ * The returned object also contains a function called `refresh` which can be called
+ * to query the backend for the map list again.
+ * 
  * Example Usage:
  * ```jsx
  * export default function SomeComponent() {
- *   const [state, maps] = useMaps();
+ *   const {state, maps, refresh} = useMaps();
  * 
  *   return (
  *    {state === 'loading' ? (
@@ -40,7 +43,9 @@ export default function useMaps() {
   const [maps, setMaps] = React.useState<Map[] | undefined>(undefined);
   const [state, setState] = React.useState<UseMapsState>('loading');
 
-  React.useEffect(() => {
+  const refresh = () => {
+    setState('loading');
+
     fetch(`${API_URL}/map/list`, {
       method: 'GET',
       headers: {
@@ -62,7 +67,11 @@ export default function useMaps() {
     .catch(err => {
       setState('error');
     });
+  };
+
+  React.useEffect(() => {
+    refresh();
   }, []);
 
-  return [state, maps];
+  return {state, maps, refresh};
 }
