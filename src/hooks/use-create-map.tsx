@@ -3,28 +3,37 @@ import useAuthentication from './use-authentication';
 
 const API_URL = "https://qqvwnljate.execute-api.ap-southeast-2.amazonaws.com";
 
+type UseCreateMapType =  [
+  (cb: (id?: string) => void) => void,
+  boolean
+];
+
 /**
  * Hook which provides a function to create a new map.
  * 
- * The function takes in the new map id as an argument, or undefined if an error
- * occured.
+ * Returns a tuple which contains a function to create a new map as well as a
+ * boolean flag to indicate if the request is pending or not.
  * 
  * Example Usage:
  * ```jsx
  * export default function SomeComponent() {
- *   const createMap = useCreateMap();
+ *   const [createMap, loading] = useCreateMap();
  *   return (
  *     <Button
- *         title="Create"
- *         onPress={() => createMap()} />
+ *         title={loading ? "..." : "Create"}
+ *         onPress={() => createMap()}
+ *      />
  *   );
  * }
  * ```
  */
-export default function useCreateMap() {
+export default function useCreateMap(): UseCreateMapType {
   const auth = useAuthentication();
+  const [loading, setLoading] = React.useState(false);
 
-  return (cb: (id?: string) => void) => {
+  const createMap = (cb: (id?: string) => void) => {
+    setLoading(true);
+
     fetch(`${API_URL}/map`, {
       method: 'POST',
       headers: {
@@ -38,6 +47,10 @@ export default function useCreateMap() {
     })
     .catch(err => {
       cb(undefined);
+    }).finally(() => {
+      setLoading(false);
     });
   };
+
+  return [createMap, loading];
 }
