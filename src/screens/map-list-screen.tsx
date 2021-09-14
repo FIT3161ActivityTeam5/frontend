@@ -11,7 +11,7 @@ export default function MapListScreen() {
   return (
     <SafeAreaView>
       {/* <TextInput onChange={() => {}} ></TextInput> */}
-      <Button title="Log Out" onPress={auth.logout} />
+      {/* <Button title="Log Out" onPress={auth.logout} /> */}
     </SafeAreaView>
   );
 }
