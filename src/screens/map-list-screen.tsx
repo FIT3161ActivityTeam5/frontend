@@ -41,7 +41,6 @@ export default function MapListScreen() {
           <ScrollView>
           {
               mapList.map((l, i) => (
-                  
                   <ListItem key={i} bottomDivider>
                       <ListItem.Content style={{ flexDirection: "row", justifyContent: "center"}}>
                           <Image source={l.image} style={{ width: 130, height: 130 }}></Image>

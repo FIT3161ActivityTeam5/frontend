@@ -9,14 +9,21 @@ import useAuthentication from '../hooks/use-authentication';
  * The LoginScreen contains the login form.
  */
 export default function LoginScreen() {
-  const auth = useAuthentication();
+    const auth = useAuthentication();
+    return( 
+        <SafeAreaView style={tailwind('flex-1 bg-blue-300 items-center justify-around p-8')}>
+           
+            <Text style={tailwind('text-purple-800 font-semibold text-3xl  text-center ')}>
+                Welcome to ACTIVITY
+            </Text>
 
-  return (
-    <SafeAreaView style={tailwind('flex-1 bg-white items-center justify-between p-8')}>
-      <Text style={tailwind('text-purple-800 font-semibold text-3xl')}>
-        ACTIVITY
-      </Text>
-      <Button title="Login" onPress={auth.login} />
-    </SafeAreaView>
+            <Text style={tailwind('text-purple-800 font-semibold text-3xl  text-center')}>
+                An Acceptance and Commitment Therapy Informed Visual Intervention Tool for You
+            </Text>
+
+            <Button title="Continue"  onPress={auth.login} />
+            
+        </SafeAreaView>
+
   ); 
 }
