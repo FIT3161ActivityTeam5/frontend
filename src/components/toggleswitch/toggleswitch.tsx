@@ -9,20 +9,23 @@ export default function Toggle_Switch(props: SwitchProps) {
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
+      // <View style={styles.container}>
         <Switch trackColor={{ false: getColor("purple-600"), true: getColor("purple-600") }}
                 thumbColor={isEnabled ? getColor("purple-50") : getColor("purple-50") }
                 ios_backgroundColor = "#3e3e3e"
                 onValueChange = { toggleSwitch }
                 value = { isEnabled }
-                style={tailwind(clsx('text-justify justify-start'))}
+                style={tailwind(clsx('text-justify justify-end'))}
         />
+      // </View> 
+
   );
 }
 
 // const styles = StyleSheet.create({
 //     container: {
 //         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'center',
+//         alignContent: 'flex-start',
+//         justifyContent: 'flex-start',
 //     },
 // });
