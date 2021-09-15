@@ -5,7 +5,6 @@ import Text from '../components/text/text';
 import ToggleSwitch from '../components/toggleswitch/toggleswitch';
 import Button from '../components/button/button';
 import useAuthentication from '../hooks/use-authentication';
-import {WebView} from 'react-native-webview';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import UserGuideScreen from './user-guide-screen';
@@ -28,7 +27,7 @@ function SettingsScreen({navigation}) {
 export default function App() {
   return (
     <NavigationContainer independent={true}>
- <Stack.Navigator>
+      <Stack.Navigator>
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="UserGuide" component={UserGuideScreen} />
       </Stack.Navigator>
