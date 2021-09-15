@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, View } from 'react-native';
 import tailwind from 'tailwind-rn';
+import useDeleteMap from '../../hooks/use-delete-map';
 import Button from '../button/button';
 import Text from '../text/text';
 import TextInput from '../text_input/input';
@@ -45,14 +46,23 @@ function MapCardModal(props: MapCardModalProps) {
   );
 }
 
-export default function MapCard() {
+export type MapCardProps = {
+  mapId: string;
+};
+
+export default function MapCard(props: MapCardProps) {
   const [modalVisible, setModalVisible] = React.useState(false);
+  const [deleteMap, loading] = useDeleteMap();
+
   return (
     <>
       <View style={[tailwind('flex-row bg-gray-50 mx-4 my-2 rounded-md overflow-hidden'), SmallShadow]}>
         <View style={[tailwind('bg-indigo-400 w-1/3'), {aspectRatio: 1}]}></View>
-        <View style={tailwind('flex-grow flex-row justify-center items-center')}>
-          <Button title={"Open"} onPress={() => console.log("Open Map")} style={'w-1/2 px-2 py-2 mr-4'}></Button>
+        <View style={tailwind('flex-grow flex-col justify-center items-center')}>
+        <Text>{props.mapId}</Text>
+          <Button title={"Delete"} onPress={() => deleteMap(props.mapId, () => {
+            console.log("????");
+          })} style={'w-1/2 px-2 py-2 mr-4'}></Button>
           <Button title=". . ." onPress={() => setModalVisible(true)} style={'w-10 px-2 py-2'}></Button>
         </View>
       </View>

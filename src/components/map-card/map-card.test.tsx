@@ -5,7 +5,7 @@ import MapCard from './map-card';
 
 describe('<MapCard />', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<MapCard />).toJSON();
+    const tree = renderer.create(<MapCard mapId="test_id" />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
