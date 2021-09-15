@@ -11,31 +11,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import UserGuideScreen from './user-guide-screen';
 
 
-
 const Stack = createStackNavigator();
 
-
-// function MyStack() {
-//   return (
-//       <Stack.Navigator>
-//         <Stack.Screen name="Settings" component={SettingsScreen} />
-//         <Stack.Screen name="UserGuide" component={UserGuideScreen} />
-//       </Stack.Navigator>
-
-//   );
-// }
-
-// function UserGuideScreen({navigation}){
-//   return (
-//     <WebView source={{ uri: 'https://drive.google.com/file/d/1YKQbuUwe1IVU7w2Pgvzj_cGuphcaQYkp/view?usp=sharing' }} />
-//   );
-// }
-
-
 function SettingsScreen({navigation}) {
-  
   const auth = useAuthentication();
-
   return (
     <SafeAreaView style={tailwind("flex-1 p-10")}>
       <Text>Dark Mode</Text>
@@ -43,7 +22,6 @@ function SettingsScreen({navigation}) {
       <Button style="mt-2" title="User Guide" onPress={() => navigation.navigate('UserGuide') }/>
       <Button style="mt-2" title="Log Out" onPress={auth.logout} />
     </SafeAreaView>
-    
   );
 }
 
