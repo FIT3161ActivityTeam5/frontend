@@ -4,6 +4,7 @@ exports[`<Text Input /> renders correctly 1`] = `
 <TextInput
   allowFontScaling={true}
   onBlur={[Function]}
+  onChangeText={[Function]}
   onFocus={[Function]}
   placeholder="Enter some text here"
   placeholderTextColor="white"
