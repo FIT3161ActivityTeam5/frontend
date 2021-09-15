@@ -5,31 +5,55 @@ import Text from '../components/text/text';
 import ToggleSwitch from '../components/toggleswitch/toggleswitch';
 import Button from '../components/button/button';
 import useAuthentication from '../hooks/use-authentication';
-import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './login-screen';
-import UserGuideScreen from './user-guide-screen';
+import {WebView} from 'react-native-webview';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import UserGuideScreen from './user-guide-screen';
+
 
 
 const Stack = createStackNavigator();
 
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Guide" component={UserGuideScreen} />
-    </Stack.Navigator>
-  );
-}
 
-export default function SettingsScreen() {
+// function MyStack() {
+//   return (
+//       <Stack.Navigator>
+//         <Stack.Screen name="Settings" component={SettingsScreen} />
+//         <Stack.Screen name="UserGuide" component={UserGuideScreen} />
+//       </Stack.Navigator>
+
+//   );
+// }
+
+// function UserGuideScreen({navigation}){
+//   return (
+//     <WebView source={{ uri: 'https://drive.google.com/file/d/1YKQbuUwe1IVU7w2Pgvzj_cGuphcaQYkp/view?usp=sharing' }} />
+//   );
+// }
+
+
+function SettingsScreen({navigation}) {
+  
   const auth = useAuthentication();
 
   return (
     <SafeAreaView style={tailwind("flex-1 p-10")}>
       <Text>Dark Mode</Text>
       <ToggleSwitch></ToggleSwitch>
-      <Button style="mt-2" title="User Guide" onPress={() => {}} />
+      <Button style="mt-2" title="User Guide" onPress={() => navigation.navigate('UserGuide') }/>
       <Button style="mt-2" title="Log Out" onPress={auth.logout} />
     </SafeAreaView>
+    
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer independent={true}>
+ <Stack.Navigator>
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="UserGuide" component={UserGuideScreen} />
+      </Stack.Navigator>
+  </NavigationContainer>
   );
 }
