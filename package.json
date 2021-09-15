@@ -19,6 +19,7 @@
     "@react-navigation/bottom-tabs": "^6.0.3",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.0.4",
+    "@react-navigation/stack": "^6.0.7",
     "clsx": "^1.1.1",
     "expo": "~42.0.1",
     "expo-auth-session": "~3.3.1",
@@ -35,7 +36,9 @@
     "react-native-screens": "~3.4.0",
     "react-native-svg-pan-zoom": "^0.1.2",
     "react-native-web": "~0.13.12",
-    "tailwind-rn": "^3.0.1"
+    "react-native-webview": "11.6.2",
+    "tailwind-rn": "^3.0.1",
+    "react-native-gesture-handler": "~1.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
