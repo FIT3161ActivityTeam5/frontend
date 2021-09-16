@@ -62,7 +62,7 @@ export default function MapCard(props: MapCardProps) {
       <View style={[tailwind('flex-row bg-gray-50 mx-4 my-2 rounded-md overflow-hidden'), SmallShadow]}>
         <View style={[tailwind('w-1/3'), {aspectRatio: 1, backgroundColor: `#${color}`}]}></View>
         <View style={tailwind('flex-grow flex-col justify-center items-center')}>
-          <Text>{c}</Text>
+          <Text>{color}</Text>
           <Button title={"Delete"} onPress={() => deleteMap(props.mapId, props.onDelete)} style={'w-1/2 px-2 py-2 mr-4'}></Button>
           <Button title=". . ." onPress={() => setModalVisible(true)} style={'w-10 px-2 py-2'}></Button>
         </View>
