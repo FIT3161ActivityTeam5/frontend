@@ -48,21 +48,22 @@ function MapCardModal(props: MapCardModalProps) {
 
 export type MapCardProps = {
   mapId: string;
+  onDelete: () => void;
 };
 
 export default function MapCard(props: MapCardProps) {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [deleteMap, loading] = useDeleteMap();
 
+  const color = props.mapId.substr(0, 6);
+
   return (
     <>
       <View style={[tailwind('flex-row bg-gray-50 mx-4 my-2 rounded-md overflow-hidden'), SmallShadow]}>
-        <View style={[tailwind('bg-indigo-400 w-1/3'), {aspectRatio: 1}]}></View>
+        <View style={[tailwind('w-1/3'), {aspectRatio: 1, backgroundColor: `#${color}`}]}></View>
         <View style={tailwind('flex-grow flex-col justify-center items-center')}>
-        <Text>{props.mapId}</Text>
-          <Button title={"Delete"} onPress={() => deleteMap(props.mapId, () => {
-            console.log("????");
-          })} style={'w-1/2 px-2 py-2 mr-4'}></Button>
+          <Text>{c}</Text>
+          <Button title={"Delete"} onPress={() => deleteMap(props.mapId, props.onDelete)} style={'w-1/2 px-2 py-2 mr-4'}></Button>
           <Button title=". . ." onPress={() => setModalVisible(true)} style={'w-10 px-2 py-2'}></Button>
         </View>
       </View>
