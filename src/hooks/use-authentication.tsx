@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import * as AuthSession from 'expo-auth-session';
 import * as SecureStore from 'expo-secure-store';
+import jwt_decode from 'jwt-decode';
 import AuthenticationContext from '../contexts/authentication-context';
 import toQueryString from '../lib/to-query-string';
 
@@ -37,7 +38,12 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
     SecureStore.getItemAsync(ACCESS_TOKEN_KEY)
       .then(token => {
         if (token !== null) {
-          setAccessToken(token);
+          // Decode the JWT to see if it has expired.
+          // If we do not do this check, the backend will reject us.
+          const decoded = jwt_decode<any>(token);
+          if (Date.now() < decoded.exp * 1000) {
+            setAccessToken(token);
+          }
         }
       }).finally(() => {
         setIsLoading(false);
