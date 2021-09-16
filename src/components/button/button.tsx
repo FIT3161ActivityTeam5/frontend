@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import tailwind from 'tailwind-rn';
+import { ActivityIndicator, TouchableOpacity } from 'react-native';
+import tailwind, { getColor } from 'tailwind-rn';
 import clsx from 'clsx';
 import Text from '../text/text';
 
@@ -19,6 +19,12 @@ export type ButtonProps = {
 
     /** Optional string of tailwind utilities to pass to the text. */
     textStyle?: string;
+
+    /**
+     * If true, will display a loading indicator rather than the button title.
+     * Will also disable the button.
+     */
+    loading?: boolean;
 };
 
 /**
@@ -46,13 +52,17 @@ export default function Button(props: ButtonProps) {
             activeOpacity={0.8}
             onPress={props.onPress}
         >
-            <Text style={tailwind(
-                clsx(    
-                    'text-white text-base font-bold',
-                )
-            )}>
-                {props.title}
-            </Text>
+            {props.loading ? <>
+                <ActivityIndicator color={getColor('gray-50')} />
+            </> : <>
+                <Text style={tailwind(
+                    clsx(
+                        'text-white text-base font-bold',
+                    )
+                )}>
+                    {props.title}
+                </Text>
+            </>}
         </TouchableOpacity>
     );
 }

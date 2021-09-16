@@ -96,6 +96,44 @@ exports[`<Button /> applies custom text styles correctly 1`] = `
 </View>
 `;
 
+exports[`<Button /> applies the loading indicator correctly 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgba(124, 58, 237, 1)",
+      "borderBottomLeftRadius": 8,
+      "borderBottomRightRadius": 8,
+      "borderTopLeftRadius": 8,
+      "borderTopRightRadius": 8,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingBottom": 12,
+      "paddingLeft": 24,
+      "paddingRight": 24,
+      "paddingTop": 12,
+      "width": "100%",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="rgba(249, 250, 251, 1)"
+    hidesWhenStopped={true}
+    size="small"
+  />
+</View>
+`;
+
 exports[`<Button /> renders correctly 1`] = `
 <View
   accessible={true}

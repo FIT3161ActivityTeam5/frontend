@@ -31,4 +31,15 @@ describe('<Button />', () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it('applies the loading indicator correctly', () => {
+    const tree = renderer.create(
+      <Button
+        title="Confirm"
+        onPress={() => {}}
+        loading={true}
+      />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
