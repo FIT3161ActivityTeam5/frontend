@@ -14,8 +14,8 @@ import useDeleteMap from '../hooks/use-delete-map';
  */
 function MapList() {
   const [state, maps, refresh] = useMaps();
-  const [createMap, loading] = useCreateMap();
-  const [deleteMap, lll] = useDeleteMap();
+  const [createMap] = useCreateMap();
+  const [deleteMap] = useDeleteMap();
 
   return (
     <ScrollView
