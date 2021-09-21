@@ -11,7 +11,7 @@ import useAuthentication from '../hooks/use-authentication';
 export default function LoginScreen() {
     const auth = useAuthentication();
     return( 
-        <SafeAreaView style={tailwind('flex-1 bg-grey-300 items-center justify-around p-8')}>
+        <SafeAreaView style={tailwind('flex-1 bg-gray-100 items-center justify-around p-8')}>
            
             <Text style={tailwind('text-purple-800 font-semibold text-3xl  text-center ')}>
                 Welcome to ACTIVITY
