@@ -95,7 +95,8 @@ exports[`<NewUserCard /> renders correctly 1`] = `
     Unsure where to begin?
     
 
-    Check out the user guide in the 
+    Check out the user guide in the
+     
     <Text
       style={
         Array [

@@ -7,13 +7,15 @@ import useMaps from '../hooks/use-maps';
 import MapCard from '../components/map-card/map-card';
 import NewUserCard from '../components/new-user-card/new-user-card';
 import useCreateMap from '../hooks/use-create-map';
+import useDeleteMap from '../hooks/use-delete-map';
 
 /**
  * Responsible for actually rendering the map list itself.
  */
 function MapList() {
   const [state, maps, refresh] = useMaps();
-  const [createMap, loading] = useCreateMap();
+  const [createMap] = useCreateMap();
+  const [deleteMap] = useDeleteMap();
 
   return (
     <ScrollView
@@ -41,13 +43,17 @@ function MapList() {
       ) : <>
         {maps.length === 0 ? <>
           <NewUserCard
-            onCreateFirst={() => createMap(() => {
+            onPressPrompt={() => createMap(() => {
               refresh();
             })}
           />
         </> : <>
           {maps.map((m, i) => (
-            <MapCard key={i} mapId={m.mapID} onDelete={refresh} />
+            <MapCard key={i} mapId={m.mapID} onDelete={() => {
+              deleteMap(m.mapID, () => {
+                refresh();
+              });
+            }} />
           ))}
         </>}
       </>}

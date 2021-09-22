@@ -21,7 +21,10 @@ const SmallShadow = {
 };
 
 type MapCardModalProps = {
+  /** Whether or not the modal is currently visible. */
   visible: boolean;
+
+  /** Callback to be called when the modal is to be closed. */
   onClose: () => void;
 };
 
@@ -47,14 +50,15 @@ function MapCardModal(props: MapCardModalProps) {
 }
 
 export type MapCardProps = {
+  /** The ID of the map which is being displayed. */
   mapId: string;
+
+  /** Callback to be called when the user requests to delete the map. */
   onDelete: () => void;
 };
 
 export default function MapCard(props: MapCardProps) {
   const [modalVisible, setModalVisible] = React.useState(false);
-  const [deleteMap, loading] = useDeleteMap();
-
   const color = props.mapId.substr(0, 6);
 
   return (
@@ -63,7 +67,7 @@ export default function MapCard(props: MapCardProps) {
         <View style={[tailwind('w-1/3'), {aspectRatio: 1, backgroundColor: `#${color}`}]}></View>
         <View style={tailwind('flex-grow flex-col justify-center items-center')}>
           <Text>{color}</Text>
-          <Button title={"Delete"} onPress={() => deleteMap(props.mapId, props.onDelete)} style={'w-1/2 px-2 py-2 mr-4'}></Button>
+          <Button title={"Delete"} onPress={props.onDelete} style={'w-1/2 px-2 py-2 mr-4'}></Button>
           <Button title=". . ." onPress={() => setModalVisible(true)} style={'w-10 px-2 py-2'}></Button>
         </View>
       </View>
