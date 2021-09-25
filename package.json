@@ -40,7 +40,7 @@
     "react-native-svg-pan-zoom": "^0.1.2",
     "react-native-web": "~0.13.12",
     "tailwind-rn": "^3.0.1",
-    "react-native-svg": "12.1.1"
+    "react-native-svg": "12.1.1",
     "react-native-webview": "11.6.2",
     "tailwind-rn": "^3.0.1",
     "react-native-gesture-handler": "~1.10.2"
