@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tailwind, { getColor } from 'tailwind-rn';
 import { RefreshControl, ScrollView, View } from 'react-native';

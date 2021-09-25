@@ -14,6 +14,8 @@ export type TextInputProps = {
 
 };
 
+// usage: <TextInput onChange={() => {}}></TextInput>
+
 export default function TextInput(props: TextInputProps) {  
   const [focus, setFocus] = React.useState(false);
   const isDarkMode = useColorScheme() === "dark";
