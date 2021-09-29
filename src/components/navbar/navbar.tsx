@@ -66,7 +66,7 @@ export default function Navbar(props: BottomTabBarProps) {
             onPress={onPress}
             onLongPress={onLongPress}
             active={isFocused}
-            title={route.name}
+            title={(options.tabBarLabel as string) || route.name}
             icon={
               options.tabBarIcon!(
                 {
