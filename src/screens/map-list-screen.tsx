@@ -68,7 +68,9 @@ export default function MapListScreen({route, navigation}: MapListScreenProps) {
                   });
                 }}
                 onOpen={() => {
-                  navigation.navigate('MapView');
+                  navigation.navigate('MapView', {
+                    mapId: m.mapID,
+                  });
                 }}
               />
             ))}

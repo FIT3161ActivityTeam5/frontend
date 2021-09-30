@@ -10,7 +10,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
   AppView: undefined,
-  MapView: undefined
+  MapView: { mapId: string }
 };
 
 export type TabBarParamList = {
