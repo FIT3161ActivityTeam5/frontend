@@ -13,6 +13,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from './authenticated-screen';
 import useSaveMap from '../hooks/use-save-map';
 import useAuthentication from '../hooks/use-authentication';
+import Button from '../components/button/button';
+
 
 const CANVAS_SIZE = 1024;
 
@@ -123,21 +125,19 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
     saveMap([]);
   });
 
+
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
+
       <View style={[
-          tailwind("absolute p-4"),
+          tailwind("absolute p-4 z-10"),
           {
             marginTop: insets.top
           }
         ]}>
-        <Text style={tailwind("text-4xl text-gray-400")}>
-          {getQuadrant({x: nodes[0].x, y: nodes[0].y}, CANVAS_SIZE)}
-        </Text>
-        <Text style={tailwind("text-4xl text-gray-400")}>
-          {getNodeWeight({x: nodes[0].x, y: nodes[0].y}, CANVAS_SIZE)}
-        </Text>
+        <Button style="mt-2" title="Back" onPress={() => navigation.goBack()} />
       </View>
+      
       <SvgPanZoom
         canvasWidth={CANVAS_SIZE}
         canvasHeight={CANVAS_SIZE}
