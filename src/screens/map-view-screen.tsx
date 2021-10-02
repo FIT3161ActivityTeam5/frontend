@@ -14,11 +14,7 @@ import { RootStackParamList } from './authenticated-screen';
 import useSaveMap from '../hooks/use-save-map';
 import useAuthentication from '../hooks/use-authentication';
 import Button from '../components/button/button';
-import MapListScreen from './map-list-screen';
-import { createStackNavigator } from '@react-navigation/stack';
 
-
-const Stack = createStackNavigator();
 
 const CANVAS_SIZE = 1024;
 
@@ -93,7 +89,7 @@ const API_URL = "https://qqvwnljate.execute-api.ap-southeast-2.amazonaws.com";
 
 type MapViewScreenProps = NativeStackScreenProps<RootStackParamList, 'MapView'>;
 
-export default function MapViewScreen({route, navigation}: MapViewScreenProps|any) {
+export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   const { mapId } = route.params;
   const [nodes, setNodes] = React.useState(NODES);
   const insets = useSafeAreaInsets();
@@ -129,9 +125,6 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps|an
     saveMap([]);
   });
 
-  <Stack.Navigator>
-    <Stack.Screen name="MapList" component={MapListScreen} />
-  </Stack.Navigator>
 
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
@@ -142,7 +135,7 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps|an
             marginTop: insets.top
           }
         ]}>
-        <Button style="mt-2" title="Back" onPress={() => navigation.navigate('MapList')} />
+        <Button style="mt-2" title="Back" onPress={() => navigation.goBack()} />
       </View>
       
       <SvgPanZoom
