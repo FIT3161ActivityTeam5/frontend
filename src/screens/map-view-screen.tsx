@@ -13,6 +13,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from './authenticated-screen';
 import useSaveMap from '../hooks/use-save-map';
 import useAuthentication from '../hooks/use-authentication';
+import Button from '../components/button/button';
+import MapListScreen from './map-list-screen';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+const Stack = createStackNavigator();
 
 const CANVAS_SIZE = 1024;
 
@@ -87,7 +93,7 @@ const API_URL = "https://qqvwnljate.execute-api.ap-southeast-2.amazonaws.com";
 
 type MapViewScreenProps = NativeStackScreenProps<RootStackParamList, 'MapView'>;
 
-export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
+export default function MapViewScreen({route, navigation}: MapViewScreenProps|any) {
   const { mapId } = route.params;
   const [nodes, setNodes] = React.useState(NODES);
   const insets = useSafeAreaInsets();
@@ -123,6 +129,10 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
     saveMap([]);
   });
 
+  <Stack.Navigator>
+    <Stack.Screen name="Map List" component={MapListScreen} />
+  </Stack.Navigator>
+
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
       <View style={[
@@ -131,12 +141,11 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
             marginTop: insets.top
           }
         ]}>
-        <Text style={tailwind("text-4xl text-gray-400")}>
-          {getQuadrant({x: nodes[0].x, y: nodes[0].y}, CANVAS_SIZE)}
-        </Text>
-        <Text style={tailwind("text-4xl text-gray-400")}>
-          {getNodeWeight({x: nodes[0].x, y: nodes[0].y}, CANVAS_SIZE)}
-        </Text>
+        {/* Issue, cant press on button */}
+        <Button style="mt-2" title="Back" onPress={auth.logout} />
+        {/* <Button style="mt-2" title="Back" onPress={() => navigation.navigate('Map List')} /> */}
+
+
       </View>
       <SvgPanZoom
         canvasWidth={CANVAS_SIZE}
