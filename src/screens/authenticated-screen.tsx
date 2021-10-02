@@ -4,8 +4,22 @@ import MapListScreen from './map-list-screen';
 import SettingsScreen from './settings-screen';
 import { IconGridMasonry, IconSettings, IconWarningTriangle } from 'iconic-icons-rn';
 import Navbar from '../components/navbar/navbar';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MapViewScreen from './map-view-screen';
+import { NavigatorScreenParams } from '@react-navigation/native';
 
-const TabBar = createBottomTabNavigator();
+export type RootStackParamList = {
+  AppView: undefined,
+  MapView: { mapId: string }
+};
+
+export type TabBarParamList = {
+  MapList: NavigatorScreenParams<RootStackParamList>,
+  Settings: undefined
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+const TabBar = createBottomTabNavigator<TabBarParamList>();
 
 /**
  * Given a route name, as well as some other properties from react-native-navigation,
@@ -18,7 +32,7 @@ const getIconForRoute = (route: string) => (props: {focused: boolean; color: str
     height: props.size,
   };
 
-  if (route === 'Map List') {
+  if (route === 'MapList') {
     return <IconGridMasonry {...iconProps} />;
   }
 
@@ -29,12 +43,7 @@ const getIconForRoute = (route: string) => (props: {focused: boolean; color: str
   return <IconWarningTriangle {...iconProps} />;
 }
 
-/**
- * The AuthenticatedScreen is what is shown to the user when they are logged in.
- * It contains a tab navigator for navigating between different parts of the 
- * application.
- */
-export default function AuthenticatedScreen() {
+function AppView() {
   return (
     <TabBar.Navigator
       screenOptions={({route}) => ({
@@ -43,8 +52,27 @@ export default function AuthenticatedScreen() {
       })}
       tabBar={props => <Navbar {...props} />}
     >
-      <TabBar.Screen name="Map List" component={MapListScreen} />
+      <TabBar.Screen name="MapList" component={MapListScreen} options={{tabBarLabel: "Map List"}} />
       <TabBar.Screen name="Settings" component={SettingsScreen} />
     </TabBar.Navigator>
+  );
+}
+
+/**
+ * The AuthenticatedScreen is what is shown to the user when they are logged in.
+ * It contains a tab navigator for navigating between different parts of the
+ * application.
+ */
+export default function AuthenticatedScreen() {
+  return (
+    <Stack.Navigator
+      screenOptions={() => ({
+        headerShown: false,
+      })}
+      initialRouteName="AppView"
+    >
+      <Stack.Screen name="AppView" component={AppView} />
+      <Stack.Screen name="MapView" component={MapViewScreen} />
+    </Stack.Navigator>
   );
 }

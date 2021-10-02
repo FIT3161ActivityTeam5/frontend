@@ -9,6 +9,10 @@ import { Vec2 } from '../lib/math';
 import { getNodeWeight, getQuadrant } from '../lib/map-utilities';
 import Text from '../components/text/text';
 import { View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './authenticated-screen';
+import useSaveMap from '../hooks/use-save-map';
+import useAuthentication from '../hooks/use-authentication';
 
 const CANVAS_SIZE = 1024;
 
@@ -79,9 +83,15 @@ const NODES: {x: number, y: number, value: number}[] = [
   // { x: 660, y: 638, value: 40 },
 ];
 
-export default function MapViewScreen() {
+const API_URL = "https://qqvwnljate.execute-api.ap-southeast-2.amazonaws.com";
+
+type MapViewScreenProps = NativeStackScreenProps<RootStackParamList, 'MapView'>;
+
+export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
+  const { mapId } = route.params;
   const [nodes, setNodes] = React.useState(NODES);
   const insets = useSafeAreaInsets();
+  const auth = useAuthentication();
 
   const handleDrag = (idx: number) => (pos: Vec2) => {
     const newNodes = [...nodes];
@@ -96,6 +106,22 @@ export default function MapViewScreen() {
   const handlePress = (idx: number) => () => {
     console.log("Pressed node " + idx);
   };
+
+  const saveMap = (data: any) => {
+    fetch(`${API_URL}/map/${mapId}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${auth.accessToken}`,
+        'mapData': JSON.stringify(data),
+      }
+    });
+  };
+
+  // This effect will be ran when the component is dismounted, we will use this
+  // to save the map data to the backend.
+  React.useEffect(() => () => {
+    saveMap([]);
+  });
 
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
