@@ -143,9 +143,8 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps|an
           }
         ]}>
         <Button style="mt-2" title="Back" onPress={() => navigation.navigate('MapList')} />
-
-
       </View>
+      
       <SvgPanZoom
         canvasWidth={CANVAS_SIZE}
         canvasHeight={CANVAS_SIZE}
