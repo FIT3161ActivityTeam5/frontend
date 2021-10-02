@@ -130,20 +130,19 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps|an
   });
 
   <Stack.Navigator>
-    <Stack.Screen name="Map List" component={MapListScreen} />
+    <Stack.Screen name="MapList" component={MapListScreen} />
   </Stack.Navigator>
 
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
+
       <View style={[
-          tailwind("absolute p-4"),
+          tailwind("absolute p-4 z-10"),
           {
             marginTop: insets.top
           }
         ]}>
-        {/* Issue, cant press on button */}
-        <Button style="mt-2" title="Back" onPress={auth.logout} />
-        {/* <Button style="mt-2" title="Back" onPress={() => navigation.navigate('Map List')} /> */}
+        <Button style="mt-2" title="Back" onPress={() => navigation.navigate('MapList')} />
 
 
       </View>
