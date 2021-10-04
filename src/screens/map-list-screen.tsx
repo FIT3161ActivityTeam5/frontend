@@ -69,7 +69,7 @@ export default function MapListScreen({route, navigation}: MapListScreenProps) {
                 }}
                 onOpen={() => {
                   navigation.navigate('MapView', {
-                    mapId: m.mapID,
+                    map: m,
                   });
                 }}
               />
