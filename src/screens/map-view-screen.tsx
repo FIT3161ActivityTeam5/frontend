@@ -8,13 +8,17 @@ import MapEdge from '../components/map/map-edge';
 import { Vec2 } from '../lib/math';
 import { getNodeWeight, getQuadrant } from '../lib/map-utilities';
 import Text from '../components/text/text';
-import { View } from 'react-native';
+import { Animated, PanResponder, PanResponderInstance, StyleSheet, View, ViewStyle } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from './authenticated-screen';
 import useSaveMap from '../hooks/use-save-map';
 import useAuthentication from '../hooks/use-authentication';
 import Button from '../components/button/button';
 import Graph from '../lib/entities/graph';
+import clsx from 'clsx';
+import { Point, ViewDimensions, ViewTransform } from 'react-native-svg-pan-zoom/interfaces';
+import Svg from 'react-native-svg';
+import Toast from 'react-native-root-toast';
 
 
 const CANVAS_SIZE = 1024;
@@ -95,6 +99,12 @@ function useForceUpdate(){
   return () => setValue(value => value + 1); // update the state to force render
 }
 
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   const { map } = route.params;
   const nodes = React.useRef((JSON.parse(map.mapData as unknown as string) as Graph).nodes).current;
@@ -134,13 +144,38 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
 
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
-      <View style={[
+      <View
+        style={[
           tailwind("absolute p-4 z-10"),
           {
             marginTop: insets.top
           }
-        ]}>
-        <Button style="mt-2" title="Back" onPress={() => navigation.goBack()} />
+        ]}
+      >
+        <Button style="mt-0" title="Back" onPress={() => navigation.goBack()} />
+        <Button
+          style="mt-1"
+          title="New Node"
+          onPress={() => {
+            // Generate a random key which will serve as an 'id' for this node.
+            const key = getRandomInt(0, 0xFFFFFFFF).toString(16);
+
+            // Position it in the center to start with, it would be nice if we could
+            // tap on the screen to choose where to place it, but the SvgPanZoom
+            // library does not have an 'onPress' prop we can use for this.
+            nodes[key] = {
+              pos: [CANVAS_SIZE / 2.0, CANVAS_SIZE / 2.0]
+            };
+
+            // Inform the user of what just happened.
+            Toast.show('Created a new node at the center of the mapp!', {
+              duration: Toast.durations.LONG,
+            });
+
+            // Force a re-render.
+            force();
+          }}
+        />
       </View>
       
       <SvgPanZoom

@@ -21,6 +21,7 @@ import {
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthenticatedScreen from './screens/authenticated-screen';
@@ -85,12 +86,14 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider>
-      <AuthenticationProvider>
-        <NavigationContainer>
-          <AuthenticationController />
-        </NavigationContainer>
-      </AuthenticationProvider>
-    </SafeAreaProvider>
+    <RootSiblingParent>
+      <SafeAreaProvider>
+        <AuthenticationProvider>
+          <NavigationContainer>
+            <AuthenticationController />
+          </NavigationContainer>
+        </AuthenticationProvider>
+      </SafeAreaProvider>
+    </RootSiblingParent>
   );
 }
