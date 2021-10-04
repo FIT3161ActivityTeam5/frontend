@@ -38,7 +38,19 @@ export default function useCreateMap(): UseCreateMapType {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${auth.accessToken}`,
-        'mapData': JSON.stringify([]),
+        'mapData': JSON.stringify({
+          nodes: {
+            'a': {
+              pos: [0, 0]
+            },
+            'b': {
+              pos: [32, 32]
+            }
+          },
+          edges: [
+            {start: 'a', end: 'b'}
+          ]
+        }),
       }
     })
     .then(r => r.json())

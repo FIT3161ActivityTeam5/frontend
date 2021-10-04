@@ -14,6 +14,7 @@ import { RootStackParamList } from './authenticated-screen';
 import useSaveMap from '../hooks/use-save-map';
 import useAuthentication from '../hooks/use-authentication';
 import Button from '../components/button/button';
+import Graph from '../lib/entities/graph';
 
 
 const CANVAS_SIZE = 1024;
@@ -89,20 +90,23 @@ const API_URL = "https://qqvwnljate.execute-api.ap-southeast-2.amazonaws.com";
 
 type MapViewScreenProps = NativeStackScreenProps<RootStackParamList, 'MapView'>;
 
+function useForceUpdate(){
+  const [value, setValue] = React.useState(0); // integer state
+  return () => setValue(value => value + 1); // update the state to force render
+}
+
 export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
-  const { mapId } = route.params;
-  const [nodes, setNodes] = React.useState(NODES);
+  const { map } = route.params;
+  const nodes = React.useRef((JSON.parse(map.mapData as unknown as string) as Graph).nodes).current;
+  const edges = React.useRef((JSON.parse(map.mapData as unknown as string) as Graph).edges).current;
   const insets = useSafeAreaInsets();
   const auth = useAuthentication();
+  const force = useForceUpdate();
 
-  const handleDrag = (idx: number) => (pos: Vec2) => {
-    const newNodes = [...nodes];
-    newNodes[idx] = {
-      ...newNodes[idx],
-      x: pos.x,
-      y: pos.y,
-    };
-    setNodes(newNodes);
+  const handleDrag = (idx: string) => (pos: Vec2) => {
+    nodes[idx].pos[0] = pos.x;
+    nodes[idx].pos[1] = pos.y;
+    force();
   }
 
   const handlePress = (idx: number) => () => {
@@ -110,11 +114,11 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   };
 
   const saveMap = (data: any) => {
-    fetch(`${API_URL}/map/${mapId}`, {
-      method: 'POST',
+    fetch(`${API_URL}/map/${map.mapID}`, {
+      method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${auth.accessToken}`,
-        'mapData': JSON.stringify(data),
+        'mapdata': JSON.stringify(data),
       }
     });
   };
@@ -122,13 +126,14 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   // This effect will be ran when the component is dismounted, we will use this
   // to save the map data to the backend.
   React.useEffect(() => () => {
-    saveMap([]);
-  });
-
+    saveMap({
+      nodes: nodes,
+      edges: edges,
+    });
+  }, []);
 
   return (
     <SafeAreaView style={tailwind('w-full h-full')}>
-
       <View style={[
           tailwind("absolute p-4 z-10"),
           {
@@ -147,10 +152,25 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
       >
         <MapAxis canvasSize={CANVAS_SIZE} />
 
-        <MapEdge x1={nodes[0].x} y1={nodes[0].y} x2={nodes[1].x} y2={nodes[1].y} />
-
-        {nodes.map((n, i) => (
-          <MapNode key={i} onDrag={handleDrag(i)} onPress={handlePress(i)} {...n} />
+        {edges.map((e, i) => (
+          <MapEdge
+            key={i}
+            x1={nodes[e.start].pos[0]}
+            y1={nodes[e.start].pos[1]}
+            x2={nodes[e.end].pos[0]}
+            y2={nodes[e.end].pos[1]}
+          />
+        ))}
+        
+        {Object.keys(nodes).map((n, i) => (
+          <MapNode
+            key={i}
+            onDrag={handleDrag(n)}
+            onPress={handlePress(i)}
+            x={nodes[n].pos[0]}
+            y={nodes[n].pos[1]}
+            value={2}
+          />
         ))}
       </SvgPanZoom>
     </SafeAreaView>

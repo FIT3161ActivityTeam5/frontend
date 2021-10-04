@@ -7,10 +7,11 @@ import Navbar from '../components/navbar/navbar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MapViewScreen from './map-view-screen';
 import { NavigatorScreenParams } from '@react-navigation/native';
+import Map from '../lib/entities/map';
 
 export type RootStackParamList = {
   AppView: undefined,
-  MapView: { mapId: string }
+  MapView: { map: Map }
 };
 
 export type TabBarParamList = {
