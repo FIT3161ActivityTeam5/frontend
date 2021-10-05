@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Thrive ACTIVITY",
+    "slug": "activity",
     "owner": "fit3161",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,6 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "scheme": "com.fit3162.thrive",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
