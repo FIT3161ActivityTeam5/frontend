@@ -58,54 +58,17 @@ Array [
     <View
       style={
         Object {
-          "alignItems": "center",
           "flexDirection": "column",
           "flexGrow": 1,
-          "justifyContent": "center",
+          "justifyContent": "space-between",
+          "marginBottom": 12,
+          "marginLeft": 12,
+          "marginRight": 12,
+          "marginTop": 12,
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "fontFamily": "Poppins_400Regular",
-            },
-            Object {},
-          ]
-        }
-      >
-        test_i
-      </Text>
-      <View
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "rgba(124, 58, 237, 1)",
-            "borderBottomLeftRadius": 8,
-            "borderBottomRightRadius": 8,
-            "borderTopLeftRadius": 8,
-            "borderTopRightRadius": 8,
-            "justifyContent": "center",
-            "marginRight": 16,
-            "opacity": 1,
-            "paddingBottom": 8,
-            "paddingLeft": 8,
-            "paddingRight": 8,
-            "paddingTop": 8,
-            "width": "50%",
-          }
-        }
-      >
+      <View>
         <Text
           style={
             Array [
@@ -113,60 +76,146 @@ Array [
                 "fontFamily": "Poppins_700Bold",
               },
               Object {
-                "color": "rgba(255, 255, 255, 1)",
-                "fontSize": 16,
-                "lineHeight": 24,
+                "fontSize": 20,
+                "lineHeight": 28,
               },
             ]
           }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "Poppins_400Regular",
+              },
+              Object {},
+            ]
+          }
         >
-          Delete
+          Map with 
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "Poppins_400Regular",
+                },
+                Object {},
+              ]
+            }
+          />
+           nodes and 
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "Poppins_400Regular",
+                },
+                Object {},
+              ]
+            }
+          />
+           edges.
         </Text>
       </View>
       <View
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "rgba(124, 58, 237, 1)",
-            "borderBottomLeftRadius": 8,
-            "borderBottomRightRadius": 8,
-            "borderTopLeftRadius": 8,
-            "borderTopRightRadius": 8,
-            "justifyContent": "center",
-            "opacity": 1,
-            "paddingBottom": 8,
-            "paddingLeft": 8,
-            "paddingRight": 8,
-            "paddingTop": 8,
-            "width": 40,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
           }
         }
       >
-        <Text
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "fontFamily": "Poppins_700Bold",
-              },
-              Object {
-                "color": "rgba(255, 255, 255, 1)",
-                "fontSize": 16,
-                "lineHeight": 24,
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "rgba(124, 58, 237, 1)",
+              "borderBottomLeftRadius": 8,
+              "borderBottomRightRadius": 8,
+              "borderTopLeftRadius": 8,
+              "borderTopRightRadius": 8,
+              "justifyContent": "center",
+              "marginRight": 4,
+              "opacity": 1,
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 8,
+              "paddingTop": 8,
+              "width": "50%",
+            }
           }
         >
-          . . .
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "Poppins_700Bold",
+                },
+                Object {
+                  "color": "rgba(255, 255, 255, 1)",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+              ]
+            }
+          >
+            Delete
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "rgba(124, 58, 237, 1)",
+              "borderBottomLeftRadius": 8,
+              "borderBottomRightRadius": 8,
+              "borderTopLeftRadius": 8,
+              "borderTopRightRadius": 8,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 8,
+              "paddingTop": 8,
+              "width": 40,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "Poppins_700Bold",
+                },
+                Object {
+                  "color": "rgba(255, 255, 255, 1)",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                },
+              ]
+            }
+          >
+            ...
+          </Text>
+        </View>
       </View>
     </View>
   </View>,
@@ -245,7 +294,6 @@ Array [
             }
           }
           underlineColorAndroid="transparent"
-          value="Map Name"
         />
         <View
           accessible={true}

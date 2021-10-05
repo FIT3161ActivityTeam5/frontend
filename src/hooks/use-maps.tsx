@@ -60,8 +60,13 @@ export default function useMaps(): UseMapsType {
     })
     .then(r => {
       if (r.status === 200) {
-        r.json().then(json => {
-          setMaps(json);
+        r.json().then((json: any[]) => {
+          setMaps(json.map(m => {
+            return {
+              ...m,
+              mapData: JSON.parse(m.mapData),
+            } as Map;
+          }));
           setState('success');
         }).catch(err => {
           setState('error');

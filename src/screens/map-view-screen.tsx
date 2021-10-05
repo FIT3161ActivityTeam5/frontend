@@ -33,8 +33,8 @@ function getRandomInt(min: number, max: number) {
 
 export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   const { map } = route.params;
-  const nodes = React.useRef((JSON.parse(map.mapData as unknown as string) as Graph).nodes).current;
-  const edges = React.useRef((JSON.parse(map.mapData as unknown as string) as Graph).edges).current;
+  const nodes = React.useRef(map.mapData.nodes).current;
+  const edges = React.useRef(map.mapData.edges).current;
   const insets = useSafeAreaInsets();
   const auth = useAuthentication();
   const force = useForceUpdate();
@@ -50,6 +50,7 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   };
 
   const saveMap = (data: any) => {
+    console.log(data);
     fetch(`${API_URL}/map/${map.mapID}`, {
       method: 'PATCH',
       headers: {
@@ -63,6 +64,7 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   // to save the map data to the backend.
   React.useEffect(() => () => {
     saveMap({
+      ...map.mapData,
       nodes: nodes,
       edges: edges,
     });
