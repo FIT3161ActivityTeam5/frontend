@@ -27,7 +27,7 @@ exports[`<NewUserCard /> renders correctly 1`] = `
       ]
     }
   >
-    Looks like you don't have any maps, press the button below to get started.
+    Looks like you don't have any maps, press a button below to get started.
   </Text>
   <View
     accessible={true}
@@ -73,7 +73,54 @@ exports[`<NewUserCard /> renders correctly 1`] = `
         ]
       }
     >
-      New Map
+      New Blank Map
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(124, 58, 237, 1)",
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "height": 40,
+        "justifyContent": "center",
+        "marginTop": 8,
+        "opacity": 1,
+        "paddingBottom": 12,
+        "paddingLeft": 24,
+        "paddingRight": 24,
+        "paddingTop": 12,
+        "width": "66.666667%",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "Poppins_700Bold",
+          },
+          Object {
+            "color": "rgba(255, 255, 255, 1)",
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+        ]
+      }
+    >
+      New Map From Example
     </Text>
   </View>
   <Text
@@ -86,7 +133,7 @@ exports[`<NewUserCard /> renders correctly 1`] = `
           "color": "rgba(75, 85, 99, 1)",
           "fontSize": 14,
           "lineHeight": 20,
-          "marginTop": 8,
+          "marginTop": 32,
           "textAlign": "center",
         },
       ]
