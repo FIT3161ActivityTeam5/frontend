@@ -25,8 +25,8 @@ export type AuthenticationProviderProps = {
 export function AuthenticationProvider(props: AuthenticationProviderProps) {
   // This is the redirect URI which must be added to the list of accepted
   // callback URLs.
-  if (REDIRECT_URI !== 'https://auth.expo.io/@fit3161/frontend') {
-    throw new Error("Authentication redirect URI is incorrect. Please log in to your Expo acccount on the command line.")
+  if (REDIRECT_URI !== 'https://auth.expo.io/@fit3161/activity') {
+    throw new Error(`Authentication redirect URI is incorrect (got ${REDIRECT_URI}). Please log in to your Expo acccount on the command line.`);
   }
 
   // Store the users token for interfacing with the backend.
