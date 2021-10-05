@@ -5,13 +5,15 @@ import { RefreshControl, ScrollView, View } from 'react-native';
 import Text from '../components/text/text';
 import useMaps from '../hooks/use-maps';
 import MapCard from '../components/map-card/map-card';
-import NewUserCard from '../components/new-user-card/new-user-card';
+import NewUserCard, { PromptIntent } from '../components/new-user-card/new-user-card';
 import useCreateMap from '../hooks/use-create-map';
 import useDeleteMap from '../hooks/use-delete-map';
 import { RootStackParamList, TabBarParamList } from './authenticated-screen';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import Map from '../lib/entities/map';
+import Graph from '../lib/entities/graph';
 
 export type MapListScreenProps = CompositeScreenProps<
   BottomTabScreenProps<TabBarParamList, 'MapList'>,
@@ -25,6 +27,42 @@ export default function MapListScreen({route, navigation}: MapListScreenProps) {
   const [state, maps, refresh] = useMaps();
   const [createMap] = useCreateMap();
   const [deleteMap] = useDeleteMap();
+
+  const createNewMap = (intent: PromptIntent) => {
+    if (intent === 'blank') {
+      createMap({
+        name: "New Map",
+        nodes: {},
+        edges: []
+      });
+    }
+
+    if (intent === 'template') {
+      createMap({
+        name: "New Map",
+        nodes: {
+          'a': {
+            pos: [242, 712]
+          },
+          'b': {
+            pos: [600, 623]
+          },
+          'c': {
+            pos: [812, 200]
+          },
+          'd': {
+            pos: [492, 475]
+          }
+        },
+        edges: [
+          {start: 'a', end: 'b'},
+          {start: 'b', end: 'c'},
+          {start: 'd', end: 'b'},
+        ]
+      });
+    }
+    refresh();
+  };
 
   return (
     <SafeAreaView style={tailwind('flex-1 justify-between')}>
@@ -53,15 +91,17 @@ export default function MapListScreen({route, navigation}: MapListScreenProps) {
         ) : <>
           {maps.length === 0 ? <>
             <NewUserCard
-              onPressPrompt={() => createMap(() => {
-                refresh();
-              })}
+              onPressPrompt={createNewMap}
             />
           </> : <>
             {maps.map((m, i) => (
               <MapCard
                 key={i}
                 mapId={m.mapID}
+                map={m}
+                mapName={m.mapData.name}
+                mapNodeCount={Object.keys(m.mapData.nodes).length}
+                mapEdgeCount={m.mapData.edges.length}
                 onDelete={() => {
                   deleteMap(m.mapID, () => {
                     refresh();
@@ -71,6 +111,9 @@ export default function MapListScreen({route, navigation}: MapListScreenProps) {
                   navigation.navigate('MapView', {
                     map: m,
                   });
+                }}
+                onUpdate={() => {
+                  refresh();
                 }}
               />
             ))}

@@ -3,6 +3,7 @@
  * we settle on a format).
  */
 type Graph = {
+    name: string;
     nodes: {[key: string]: {
         pos: [number, number],
     }};

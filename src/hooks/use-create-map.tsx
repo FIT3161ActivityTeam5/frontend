@@ -1,10 +1,11 @@
 import React from 'react';
+import Graph from '../lib/entities/graph';
 import useAuthentication from './use-authentication';
 
 const API_URL = "https://qqvwnljate.execute-api.ap-southeast-2.amazonaws.com";
 
 type UseCreateMapType =  [
-  (cb: (id?: string) => void) => void,
+  (map: Graph, cb?: (id?: string) => void) => void,
   boolean
 ];
 
@@ -31,34 +32,22 @@ export default function useCreateMap(): UseCreateMapType {
   const auth = useAuthentication();
   const [loading, setLoading] = React.useState(false);
 
-  const createMap = (cb: (id?: string) => void) => {
+  const createMap = (map: Graph, cb?: (id?: string) => void) => {
     setLoading(true);
 
     fetch(`${API_URL}/map`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${auth.accessToken}`,
-        'mapData': JSON.stringify({
-          nodes: {
-            'a': {
-              pos: [0, 0]
-            },
-            'b': {
-              pos: [32, 32]
-            }
-          },
-          edges: [
-            {start: 'a', end: 'b'}
-          ]
-        }),
+        'mapData': JSON.stringify(map),
       }
     })
     .then(r => r.json())
     .then(json => {
-      cb(json.mapID);
+      if(cb) { cb(json.mapID); }
     })
     .catch(err => {
-      cb(undefined);
+      if(cb) { cb(undefined); }
     }).finally(() => {
       setLoading(false);
     });
