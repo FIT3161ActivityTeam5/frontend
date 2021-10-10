@@ -11,8 +11,9 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from './authenticated-screen';
 import useAuthentication from '../hooks/use-authentication';
 import Button from '../components/button/button';
-import Graph from '../lib/entities/graph';
 import Toast from 'react-native-root-toast';
+import { getScaledNodeWeight } from '../lib/map-utilities';
+import clsx from 'clsx';
 
 const CANVAS_SIZE = 1024;
 
@@ -39,14 +40,34 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
   const auth = useAuthentication();
   const force = useForceUpdate();
 
+  const [isAddingEdge, setIsAddingEdge] = React.useState(false);
+  const [edgeStartNode, setEdgeStartNode] = React.useState<string | undefined>(undefined);
+
   const handleDrag = (idx: string) => (pos: Vec2) => {
     nodes[idx].pos[0] = pos.x;
     nodes[idx].pos[1] = pos.y;
     force();
   }
 
-  const handlePress = (idx: number) => () => {
-    console.log("Pressed node " + idx);
+  const handlePress = (idx: string) => () => {
+    if (isAddingEdge) {
+      if (!edgeStartNode) {
+        setEdgeStartNode(idx);
+        Toast.show('Now select the node to connect this one to.', {
+          duration: Toast.durations.SHORT,
+        });
+      } else {
+        if (idx !== edgeStartNode) {
+          // create edge between edgeStartNode and idx
+          edges.push({
+            start: edgeStartNode,
+            end: idx
+          });
+          setIsAddingEdge(false);
+          setEdgeStartNode(undefined);
+        }
+      }
+    }
   };
 
   const saveMap = (data: any) => {
@@ -96,12 +117,31 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
             };
 
             // Inform the user of what just happened.
-            Toast.show('Created a new node at the center of the mapp!', {
+            Toast.show('Created a new node at the center of the map!', {
               duration: Toast.durations.LONG,
             });
 
             // Force a re-render.
             force();
+          }}
+        />
+        <Button
+          style={clsx(
+            'mt-1',
+            {
+              'bg-red-500': isAddingEdge,
+            }
+          )}
+          title={isAddingEdge ? "Cancel" : "New Edge"}
+          onPress={() => {
+            if (isAddingEdge) {
+              setEdgeStartNode(undefined);
+            } else {
+              Toast.show('Select the first node to begin creating an edge.', {
+                duration: Toast.durations.SHORT,
+              });
+            }
+            setIsAddingEdge(!isAddingEdge);
           }}
         />
       </View>
@@ -129,10 +169,11 @@ export default function MapViewScreen({route, navigation}: MapViewScreenProps) {
           <MapNode
             key={i}
             onDrag={handleDrag(n)}
-            onPress={handlePress(i)}
+            onPress={handlePress(n)}
             x={nodes[n].pos[0]}
             y={nodes[n].pos[1]}
-            value={2}
+            value={getScaledNodeWeight({x: nodes[n].pos[0], y: nodes[n].pos[1]}, CANVAS_SIZE)}
+            selected={n === edgeStartNode}
           />
         ))}
       </SvgPanZoom>

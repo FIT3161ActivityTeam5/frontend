@@ -19,6 +19,9 @@ export type MapNodeProps = {
 
   /** Callback to call when this node is pressed. */
   onPress: () => void;
+
+  /** Whether or not the node is currently selected. */
+  selected?: boolean;
 };
 
 /**
@@ -69,13 +72,22 @@ export default function MapNode(props: MapNodeProps) {
         r={12}
         fill={getColor('purple-500')}
       />
+      {props.selected && (
+        <Circle
+          cx={0}
+          cy={0}
+          r={18}
+          stroke={getColor('purple-600')}
+          strokeWidth={3.0}
+        />
+      )}
       <SvgText
         x={0}
         y={4}
         fill="white"
         textAnchor="middle"
       >
-        {props.value}
+        {props.value.toFixed(1)}
       </SvgText>
     </ResponderElement>
   );
