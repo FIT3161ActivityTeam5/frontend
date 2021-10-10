@@ -29,3 +29,12 @@ export function getNodeWeight(pos: Vec2, canvasSize: number) {
     const half = canvasSize / 2.0;
     return distance(pos, {x: half, y: half}) / half;
 }
+
+/**
+ * Given a nodes position on the canvas, returns the weight of the node, based
+ * on some sort of basic scale.
+ */
+export function getScaledNodeWeight(pos: Vec2, canvasSize: number) {
+    const distance = getNodeWeight(pos, canvasSize);
+    return distance * 4.0;
+}
