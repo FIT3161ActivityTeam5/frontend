@@ -14,6 +14,7 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Map from '../lib/entities/map';
 import Graph from '../lib/entities/graph';
+import Button from '../components/button/button';
 
 export type MapListScreenProps = CompositeScreenProps<
   BottomTabScreenProps<TabBarParamList, 'MapList'>,
@@ -117,6 +118,13 @@ export default function MapListScreen({route, navigation}: MapListScreenProps) {
                 }}
               />
             ))}
+            <View style={tailwind('items-center mt-4 mb-16')}>
+              <Button
+                title="Create New Map"
+                onPress={() => createNewMap('blank')}
+                style="w-full w-1/2"
+              />
+            </View>
           </>}
         </>}
       </ScrollView>
