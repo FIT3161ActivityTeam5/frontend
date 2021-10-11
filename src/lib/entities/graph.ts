@@ -6,6 +6,7 @@ type Graph = {
     name: string;
     nodes: {[key: string]: {
         pos: [number, number],
+        description: string,
     }};
     edges: {
         start: string;
