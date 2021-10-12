@@ -1,12 +1,10 @@
-import clsx from 'clsx';
-import { IconTrash } from 'iconic-icons-rn';
 import React from 'react';
-import { ActivityIndicator, Modal, Pressable, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import tailwind, { getColor } from 'tailwind-rn';
+import { Modal, Pressable, View } from 'react-native';
+import tailwind from 'tailwind-rn';
 import useAuthentication from '../../hooks/use-authentication';
 import Map from '../../lib/entities/map';
 import Button from '../button/button';
+import MapPreview from '../map-preview/map-preview';
 import Text from '../text/text';
 import TextInput from '../text_input/input';
 
@@ -89,7 +87,6 @@ export type MapCardProps = {
 export default function MapCard(props: MapCardProps) {
   const [modalVisible, setModalVisible] = React.useState(false);
   const auth = useAuthentication();
-  const color = props.mapId.substr(0, 6);
 
   const saveMap = (data: any) => fetch(`${API_URL}/map/${props.mapId}`, {
       method: 'PATCH',
@@ -105,7 +102,7 @@ export default function MapCard(props: MapCardProps) {
         style={[tailwind('flex-row bg-gray-50 mx-4 my-2 rounded-md overflow-hidden'), SmallShadow]}
         onPress={props.onOpen}
       >
-        <View style={[tailwind('w-1/3'), {aspectRatio: 1, backgroundColor: `#${color}`}]}></View>
+        <MapPreview map={props.map} />
         <View style={tailwind('flex-grow flex-col justify-between m-3')}>
           <View>
             <Text style={tailwind('text-xl font-bold')}>{props.mapName}</Text>
