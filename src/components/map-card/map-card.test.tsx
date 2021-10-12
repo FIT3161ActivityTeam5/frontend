@@ -13,7 +13,24 @@ describe('<MapCard />', () => {
         login: jest.fn(),
         logout: jest.fn(),
       }}>
-        <MapCard mapId="test_id" onDelete={jest.fn()} />
+        <MapCard
+          mapId="test_id"
+          onDelete={jest.fn()}
+          mapEdgeCount={0}
+          mapNodeCount={0}
+          mapName="Test Map"
+          onOpen={jest.fn()}
+          onUpdate={jest.fn()}
+          map={{
+            associatedUserID: '0',
+            mapID: '0',
+            mapData: {
+              edges: [],
+              nodes: {},
+              name: "Test Map"
+            }
+          }}
+        />
       </AuthenticationContext.Provider>
     ).toJSON();
     expect(tree).toMatchSnapshot();

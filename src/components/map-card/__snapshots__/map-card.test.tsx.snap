@@ -42,19 +42,94 @@ Array [
       ]
     }
   >
-    <View
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbWidth="33.333333%"
+      focusable={false}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
       style={
         Array [
           Object {
-            "width": "33.333333%",
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
           },
-          Object {
-            "aspectRatio": 1,
-            "backgroundColor": "#test_i",
-          },
+          Array [
+            Object {
+              "borderBottomColor": "rgba(209, 213, 219, 1)",
+              "borderLeftColor": "rgba(209, 213, 219, 1)",
+              "borderRightColor": "rgba(209, 213, 219, 1)",
+              "borderRightWidth": 1,
+              "borderTopColor": "rgba(209, 213, 219, 1)",
+              "width": "33.333333%",
+            },
+            Object {
+              "aspectRatio": 1,
+            },
+          ],
         ]
       }
-    />
+      vbHeight={1024}
+      vbWidth={1024}
+    >
+      <RNSVGGroup>
+        <RNSVGCircle
+          cx={512}
+          cy={512}
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          r={128}
+          stroke={4291941851}
+          strokeWidth={9}
+        />
+        <RNSVGCircle
+          cx={512}
+          cy={512}
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          r={384}
+          stroke={4291941851}
+          strokeWidth={9}
+        />
+        <RNSVGLine
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          stroke={4291941851}
+          strokeWidth={9}
+          x1={512}
+          x2={512}
+          y1={0}
+          y2={1024}
+        />
+        <RNSVGLine
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          stroke={4291941851}
+          strokeWidth={9}
+          x1={0}
+          x2={1024}
+          y1={512}
+          y2={512}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
     <View
       style={
         Object {
@@ -81,7 +156,9 @@ Array [
               },
             ]
           }
-        />
+        >
+          Test Map
+        </Text>
         <Text
           style={
             Array [
@@ -102,7 +179,9 @@ Array [
                 Object {},
               ]
             }
-          />
+          >
+            0
+          </Text>
            nodes and 
           <Text
             style={
@@ -113,7 +192,9 @@ Array [
                 Object {},
               ]
             }
-          />
+          >
+            0
+          </Text>
            edges.
         </Text>
       </View>
@@ -294,6 +375,7 @@ Array [
             }
           }
           underlineColorAndroid="transparent"
+          value="Test Map"
         />
         <View
           accessible={true}
