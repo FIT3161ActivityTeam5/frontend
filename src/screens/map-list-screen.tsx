@@ -43,16 +43,20 @@ export default function MapListScreen({route, navigation}: MapListScreenProps) {
         name: "New Map",
         nodes: {
           'a': {
-            pos: [242, 712]
+            pos: [242, 712],
+            description: "Example node 1",
           },
           'b': {
-            pos: [600, 623]
+            pos: [600, 623],
+            description: "Example node 2",
           },
           'c': {
-            pos: [812, 200]
+            pos: [812, 200],
+            description: "Example node 3",
           },
           'd': {
-            pos: [492, 475]
+            pos: [492, 475],
+            description: "Example node 4",
           }
         },
         edges: [
