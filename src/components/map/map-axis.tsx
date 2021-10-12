@@ -5,12 +5,17 @@ import { getColor } from 'tailwind-rn';
 export type MapAxisProps = {
   /** Size of the canvas which this axis is being displayed on. */
   canvasSize: number;
+
+  /** The stroke width of the axis lines. */
+  thickness?: number;
 };
 
 /**
  * Represents the circular rings and horizontal/vertical axis on the map view.
  */
 export default function MapAxis(props: MapAxisProps) {
+  const {thickness = 2.0} = props;
+
   return (
     <>
       {/* Inner ring. */}
@@ -18,7 +23,7 @@ export default function MapAxis(props: MapAxisProps) {
         cx={props.canvasSize / 2.0}
         cy={props.canvasSize / 2.0}
         r={128}
-        strokeWidth={2}
+        strokeWidth={thickness}
         stroke={getColor('gray-300')}
       />
       
@@ -27,7 +32,7 @@ export default function MapAxis(props: MapAxisProps) {
         cx={props.canvasSize / 2.0}
         cy={props.canvasSize / 2.0}
         r={384}
-        strokeWidth={2}
+        strokeWidth={thickness}
         stroke={getColor('gray-300')}
       />
 
@@ -38,8 +43,8 @@ export default function MapAxis(props: MapAxisProps) {
         y1={0}
         x2={props.canvasSize / 2.0}
         y2={props.canvasSize}
+        strokeWidth={thickness}
         stroke={getColor('gray-300')}
-        strokeWidth={2}
       />
 
       {/* Horizontal axis. */}
@@ -48,8 +53,8 @@ export default function MapAxis(props: MapAxisProps) {
         y1={props.canvasSize / 2.0}
         x2={props.canvasSize}
         y2={props.canvasSize / 2.0}
+        strokeWidth={thickness}
         stroke={getColor('gray-300')}
-        strokeWidth={2}
       />
     </>
   );
