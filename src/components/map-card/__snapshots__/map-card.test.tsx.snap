@@ -357,13 +357,13 @@ Array [
           rejectResponderTermination={true}
           style={
             Object {
-              "backgroundColor": "rgba(96, 165, 250, 1)",
+              "backgroundColor": "rgba(255, 255, 255, 1)",
               "borderBottomWidth": 2,
               "borderLeftWidth": 2,
               "borderRightWidth": 2,
               "borderTopWidth": 2,
               "color": "rgba(55, 65, 81, 1)",
-              "height": 96,
+              "height": 32,
               "marginBottom": 16,
               "marginLeft": 16,
               "marginRight": 16,
