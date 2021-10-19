@@ -24,7 +24,7 @@ export default function TextInput(props: TextInputProps) {
           placeholderTextColor={'white'}
           placeholder="Enter some text here"  
           style={tailwind(clsx('px-2 border-2 m-4 h-8 w-9/12 text-justify',
-            (focus ? "bg-white-200 text-gray-900" : "bg-white-200 text-gray-700")))}
+            (focus ? "bg-white text-gray-900" : "bg-white text-gray-700")))}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           onChangeText={props.onChange}
