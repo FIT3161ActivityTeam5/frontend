@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MapAxis /> applies stroke width correctly 1`] = `
+Array [
+  <RNSVGCircle
+    cx={4}
+    cy={4}
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    r={128}
+    stroke={4291941851}
+    strokeWidth={4}
+  />,
+  <RNSVGCircle
+    cx={4}
+    cy={4}
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    r={384}
+    stroke={4291941851}
+    strokeWidth={4}
+  />,
+  <RNSVGLine
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    stroke={4291941851}
+    strokeWidth={4}
+    x1={4}
+    x2={4}
+    y1={0}
+    y2={8}
+  />,
+  <RNSVGLine
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    stroke={4291941851}
+    strokeWidth={4}
+    x1={0}
+    x2={8}
+    y1={4}
+    y2={4}
+  />,
+]
+`;
+
+exports[`<MapAxis /> renders correctly 1`] = `
+Array [
+  <RNSVGCircle
+    cx={4}
+    cy={4}
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    r={128}
+    stroke={4291941851}
+    strokeWidth={2}
+  />,
+  <RNSVGCircle
+    cx={4}
+    cy={4}
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    r={384}
+    stroke={4291941851}
+    strokeWidth={2}
+  />,
+  <RNSVGLine
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    stroke={4291941851}
+    strokeWidth={2}
+    x1={4}
+    x2={4}
+    y1={0}
+    y2={8}
+  />,
+  <RNSVGLine
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    stroke={4291941851}
+    strokeWidth={2}
+    x1={0}
+    x2={8}
+    y1={4}
+    y2={4}
+  />,
+]
+`;

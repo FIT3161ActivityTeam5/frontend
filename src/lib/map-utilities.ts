@@ -17,7 +17,7 @@ export function getQuadrant(pos: Vec2, canvasSize: number) {
     if (pos.x < half && pos.y < half) {
         return "top left";
     }
-    return 'top left'
+    return 'top left';
 }
 
 /**

@@ -13,7 +13,7 @@ describe('<NewUserCard />', () => {
         login: jest.fn(),
         logout: jest.fn(),
       }}>
-        <NewUserCard onCreateFirst={jest.fn()} />
+        <NewUserCard onPressPrompt={jest.fn()} />
       </AuthenticationContext.Provider>
     ).toJSON();
     expect(tree).toMatchSnapshot();

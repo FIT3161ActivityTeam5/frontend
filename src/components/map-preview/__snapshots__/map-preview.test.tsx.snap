@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MapPreview /> renders correctly 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbWidth="33.333333%"
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      Array [
+        Object {
+          "borderBottomColor": "rgba(209, 213, 219, 1)",
+          "borderLeftColor": "rgba(209, 213, 219, 1)",
+          "borderRightColor": "rgba(209, 213, 219, 1)",
+          "borderRightWidth": 1,
+          "borderTopColor": "rgba(209, 213, 219, 1)",
+          "width": "33.333333%",
+        },
+        Object {
+          "aspectRatio": 1,
+        },
+      ],
+    ]
+  }
+  vbHeight={1024}
+  vbWidth={1024}
+>
+  <RNSVGGroup>
+    <RNSVGCircle
+      cx={512}
+      cy={512}
+      propList={
+        Array [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      r={128}
+      stroke={4291941851}
+      strokeWidth={9}
+    />
+    <RNSVGCircle
+      cx={512}
+      cy={512}
+      propList={
+        Array [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      r={384}
+      stroke={4291941851}
+      strokeWidth={9}
+    />
+    <RNSVGLine
+      propList={
+        Array [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={4291941851}
+      strokeWidth={9}
+      x1={512}
+      x2={512}
+      y1={0}
+      y2={1024}
+    />
+    <RNSVGLine
+      propList={
+        Array [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={4291941851}
+      strokeWidth={9}
+      x1={0}
+      x2={1024}
+      y1={512}
+      y2={512}
+    />
+    <RNSVGLine
+      propList={
+        Array [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={4283178389}
+      strokeWidth={6}
+      x1={242}
+      x2={600}
+      y1={712}
+      y2={623}
+    />
+    <RNSVGLine
+      propList={
+        Array [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={4283178389}
+      strokeWidth={6}
+      x1={600}
+      x2={812}
+      y1={623}
+      y2={200}
+    />
+    <RNSVGLine
+      propList={
+        Array [
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      stroke={4283178389}
+      strokeWidth={6}
+      x1={492}
+      x2={600}
+      y1={475}
+      y2={623}
+    />
+    <RNSVGCircle
+      cx={242}
+      cy={712}
+      fill={4283178389}
+      propList={
+        Array [
+          "fill",
+        ]
+      }
+      r={16}
+    />
+    <RNSVGCircle
+      cx={600}
+      cy={623}
+      fill={4283178389}
+      propList={
+        Array [
+          "fill",
+        ]
+      }
+      r={16}
+    />
+    <RNSVGCircle
+      cx={812}
+      cy={200}
+      fill={4283178389}
+      propList={
+        Array [
+          "fill",
+        ]
+      }
+      r={16}
+    />
+    <RNSVGCircle
+      cx={492}
+      cy={475}
+      fill={4283178389}
+      propList={
+        Array [
+          "fill",
+        ]
+      }
+      r={16}
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;

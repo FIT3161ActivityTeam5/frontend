@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MapNode /> applies selected style correctly 1`] = `
+<RNSVGGroup
+  matrix={
+    Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ]
+  }
+  onMoveShouldSetResponder={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  responsible={true}
+>
+  <RNSVGCircle
+    cx={0}
+    cy={0}
+    fill={4287323382}
+    fillOpacity={0.5}
+    propList={
+      Array [
+        "fill",
+        "fillOpacity",
+      ]
+    }
+    r={15}
+  />
+  <RNSVGCircle
+    cx={0}
+    cy={0}
+    fill={4287323382}
+    propList={
+      Array [
+        "fill",
+      ]
+    }
+    r={12}
+  />
+  <RNSVGCircle
+    cx={0}
+    cy={0}
+    propList={
+      Array [
+        "stroke",
+        "strokeWidth",
+      ]
+    }
+    r={18}
+    stroke={4286331629}
+    strokeWidth={3}
+  />
+  <RNSVGText
+    content={null}
+    dx={Array []}
+    dy={Array []}
+    fill={4294967295}
+    font={
+      Object {
+        "textAnchor": "middle",
+      }
+    }
+    propList={
+      Array [
+        "fill",
+      ]
+    }
+    rotate={Array []}
+    x={
+      Array [
+        0,
+      ]
+    }
+    y={
+      Array [
+        4,
+      ]
+    }
+  >
+    <RNSVGTSpan
+      content="1.0"
+      dx={Array []}
+      dy={Array []}
+      font={Object {}}
+      rotate={Array []}
+      x={Array []}
+      y={Array []}
+    />
+  </RNSVGText>
+</RNSVGGroup>
+`;
+
+exports[`<MapNode /> renders correctly 1`] = `
+<RNSVGGroup
+  matrix={
+    Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ]
+  }
+  onMoveShouldSetResponder={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  responsible={true}
+>
+  <RNSVGCircle
+    cx={0}
+    cy={0}
+    fill={4287323382}
+    fillOpacity={0.5}
+    propList={
+      Array [
+        "fill",
+        "fillOpacity",
+      ]
+    }
+    r={15}
+  />
+  <RNSVGCircle
+    cx={0}
+    cy={0}
+    fill={4287323382}
+    propList={
+      Array [
+        "fill",
+      ]
+    }
+    r={12}
+  />
+  <RNSVGText
+    content={null}
+    dx={Array []}
+    dy={Array []}
+    fill={4294967295}
+    font={
+      Object {
+        "textAnchor": "middle",
+      }
+    }
+    propList={
+      Array [
+        "fill",
+      ]
+    }
+    rotate={Array []}
+    x={
+      Array [
+        0,
+      ]
+    }
+    y={
+      Array [
+        4,
+      ]
+    }
+  >
+    <RNSVGTSpan
+      content="1.0"
+      dx={Array []}
+      dy={Array []}
+      font={Object {}}
+      rotate={Array []}
+      x={Array []}
+      y={Array []}
+    />
+  </RNSVGText>
+</RNSVGGroup>
+`;
